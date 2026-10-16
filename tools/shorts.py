@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+"""Cut a clip into a vertical 1080x1920 Short from a JSON edit plan.
+
+The plan lists source segments (with speed and punch-in zoom), dialogue
+captions in *source* time, a persistent hook title, timed pop-up labels and an
+optional freeze-frame end card. Caption/label times are remapped through the
+cuts automatically, so you only ever think in the original footage's timeline.
+
+  python3 tools/shorts.py plan.json input.mp4 -o short.mp4
+
+See edits/fridge.json for a worked example.
+"""
+import argparse, json, subprocess, tempfile, os
+
+W, H, SQ, TOP = 1080, 1920, 1080, 420          # video window: 1080x1080 at y=420
+FONTS = "/usr/share/fonts/truetype/dejavu"
+SPEAKER_COLORS = {"OFFICER": "&H00FFBE78&", "MAN": "&H0000D7FF&", "WOMAN": "&H0000D7FF&"}
+
+
+def atempo(speed):
+    parts = []
+    while speed > 2.0:
+        parts.append("atempo=2.0"); speed /= 2.0
+    return ",".join(parts + [f"atempo={speed:.4f}"])
+
+
+def timeline(segs):
+    """Attach output start times; return (segments, edit duration)."""
+    t = 0.0
+    for s in segs:
+        s["out"] = t
+        t += (s["end"] - s["start"]) / s.get("speed", 1.0)
+    return segs, t
+
+
+def remap(segs, t, snap):
+    """Source time -> output time. Times inside a cut snap forward/back."""
+    for i, s in enumerate(segs):
+        if s["start"] <= t <= s["end"]:
+            return s["out"] + (t - s["start"]) / s.get("speed", 1.0)
+        if t < s["start"]:
+            if snap == "next":
+                return s["out"]
+            prev = segs[i - 1] if i else None
+            return prev["out"] + (prev["end"] - prev["start"]) / prev.get("speed", 1.0) if prev else 0.0
+    last = segs[-1]
+    return last["out"] + (last["end"] - last["start"]) / last.get("speed", 1.0)
+
+
+def ts(t):
+    t = max(0.0, t)
+    return f"{int(t // 3600)}:{int(t % 3600 // 60):02d}:{t % 60:05.2f}"
+
+
+def build_ass(plan, segs, total):
+    hl = "{\\c&H0000D7FF&}"
+    ev = []
+    title = plan["title"].replace("*", hl, 1).replace("*", "{\\c&HFFFFFF&}", 1)
+    ev.append(f"Dialogue: 0,{ts(0)},{ts(total)},Title,,0,0,0,,{title}")
+    for c in plan.get("captions", []):
+        a, b = remap(segs, c["start"], "next"), remap(segs, c["end"], "prev")
+        if b - a < 0.15:
+            continue
+        sp = c.get("speaker", "")
+        lab = f"{{\\c{SPEAKER_COLORS.get(sp, '&H00FFFFFF&')}\\fs40}}{sp}\\N{{\\c&HFFFFFF&\\fs58}}" if sp else ""
+        text = c["text"]
+        if c.get("emphasis"):
+            text = f"{{\\c&H0000D7FF&\\fs68}}{text}"
+        ev.append(f"Dialogue: 1,{ts(a)},{ts(b)},Cap,,0,0,0,,{lab}{text}")
+    for p in plan.get("pops", []):
+        a = remap(segs, p["start"], "next") if "start" in p else total - plan.get("freeze", 0)
+        b = remap(segs, p["end"], "prev") if "end" in p else total
+        big = f"\\an5\\pos({W // 2},{TOP + SQ // 2})\\fs96" if p.get("big") else ""
+        ev.append(f"Dialogue: 2,{ts(a)},{ts(b)},Pop,,0,0,0,,{{{big}\\fad(120,0)\\t(0,180,\\fscx112\\fscy112)\\t(180,320,\\fscx100\\fscy100)}}{p['text']}")
+    head = f"""[Script Info]
+ScriptType: v4.00+
+PlayResX: {W}
+PlayResY: {H}
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,1,0,0,0,100,100,0,0,1,6,3,8,60,60,150,1
+Style: Cap,DejaVu Sans,58,&H00FFFFFF,&H00FFFFFF,&H00000000,&HA0000000,1,0,0,0,100,100,0,0,1,5,2,8,70,70,{TOP + SQ + 40},1
+Style: Pop,DejaVu Sans,64,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00242DE6,1,0,0,0,100,100,0,0,3,14,0,8,60,60,{TOP + 50},1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+    return head + "\n".join(ev) + "\n"
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("plan")
+    ap.add_argument("input")
+    ap.add_argument("-o", "--output", required=True)
+    a = ap.parse_args()
+    plan = json.load(open(a.plan))
+    segs, edit_dur = timeline(plan["segments"])
+    freeze = plan.get("freeze", 0)
+    total = edit_dur + freeze
+
+    fc = []
+    for i, s in enumerate(segs):
+        sp, z = s.get("speed", 1.0), s.get("zoom", 1.0)
+        fc.append(f"[0:v]trim={s['start']}:{s['end']},setpts=(PTS-STARTPTS)/{sp},"
+                  f"crop=iw/{z}:ih/{z},scale={SQ}:{SQ}:flags=lanczos,setsar=1,fps=30[v{i}]")
+        fc.append(f"[0:a]atrim={s['start']}:{s['end']},asetpts=PTS-STARTPTS"
+                  + ("" if sp == 1.0 else "," + atempo(sp)) + f",afade=t=in:d=0.02[a{i}]")
+    n = len(segs)
+    fc.append("".join(f"[v{i}][a{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=1[cv][ca]")
+    fc.append(f"[cv]tpad=stop_mode=clone:stop_duration={freeze},split[fg][bgsrc]")
+    fc.append(f"[bgsrc]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=28:2,eq=brightness=-0.22:saturation=0.8[bg]")
+    with tempfile.NamedTemporaryFile("w", suffix=".ass", delete=False) as f:
+        f.write(build_ass(plan, segs, total))
+    fc.append(f"[bg][fg]overlay=0:{TOP},subtitles={f.name}:fontsdir={FONTS}[v]")
+    fc.append(f"[ca]apad=pad_dur={freeze},loudnorm=I=-14:TP=-1.5:LRA=11[a]")
+    try:
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", a.input, "-filter_complex", ";".join(fc),
+                        "-map", "[v]", "-map", "[a]", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium",
+                        "-crf", "21", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
+                        "-movflags", "+faststart", a.output], check=True)
+    finally:
+        os.unlink(f.name)
+    print(f"wrote {a.output}  ({total:.1f}s)")
+
+
+if __name__ == "__main__":
+    main()
