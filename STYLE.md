@@ -4,7 +4,11 @@ Source: reference video the channel owner licensed for style study, analysed chu
 We imitate **patterns** (structure, pacing, typography system, tone). Never reuse its script lines,
 footage, or its exact font files; the fonts below are free look-alikes in `assets/fonts/`.
 
-Status: built from reference **part 1** (0:00–2:30). Case endings and transitions are genre defaults, marked ASSUMED.
+Status: built from reference **part 1** (0:00–2:30) and the **ending** (final 98 s). Only the bridge
+between cases is still unseen.
+
+Copyright note: the reference reuses other outlets' clips (a news-network watermark shows in the ending).
+**We don't.** Use only agency-released bodycam or footage we have rights to.
 
 ---
 
@@ -67,6 +71,8 @@ Tension-line formulas to rotate:
 | Quote card | Special Elite | pale yellow `#F3EBA6`, in "double quotes" | Over darkened footage, left-center, 2 lines max |
 | Dialogue subtitles | Montserrat Bold, tight tracking | **one colour per speaker**: blue `#2F7BFF`, gold `#F5C443`, teal `#8EE6DF`, orange `#FF8A3D` | Bottom-center, sentence case, thin dark outline + soft shadow, no box, ~5% of frame height |
 
+| Audio-only segment (hot mic, phone call, off-camera talk) | **Bebas Neue**, ALL CAPS | white, soft shadow | Footage fades to black; centred **hot-pink waveform** (`#F04FB0`) animates to the audio; caption bottom-center, one phrase at a time |
+
 Other visual rules:
 - Keep the native bodycam timestamp / "AXON BODY" overlay; it reads as authentic.
 - Soft circular face blur on bystanders and minors.
@@ -81,14 +87,22 @@ Other visual rules:
 6. Mid-case cliffhanger before the biggest moment
 7. Outcome (what happened after: charges, lawsuit, firing) → bridge line to the next case
 
-### Case ending + transition (ASSUMED: the reference ending was not available)
-Genre-standard defaults until confirmed:
-- **Outcome card**: dark grunge background, Special Elite in red. One headline fact ("Charged with battery",
-  "Resigned 3 weeks later", "City settled for $X"), then 1–2 narration lines on what happened after.
-- **Bridge line** into the next case, reusing the premise: "But he wasn't the only one who thought [X]…"
-  → straight into the next case's date card.
-- **Video end**: finish on the strongest case. Close with one line that loops back to the premise, then a
-  5–10 s end screen. No "like and subscribe" speech.
+### Ending (from the reference's final 98 s)
+| Time | Beat | What happens | Visual |
+|---|---|---|---|
+| 0:00–0:09 | **Fact that collapses the case** | Narrator states the decisive fact, then the verdict on the situation ("So [they] had nothing on him.") | Bodycam |
+| 0:09–0:30 | **Footage: the scramble** | Officers decide what to charge anyway | Subtitled bodycam |
+| 0:30–0:37 | **Setup for the reveal** | One line framing what comes next | — |
+| 0:37–1:17 | **Climax: the "they didn't know it was recording" moment** | The officers' private conversation, played long (40 s) | **Audio-only treatment**: fade to black, hot-pink waveform, all-caps captions |
+| 1:17–1:34 | **Consequences** | Pivot line ("But they didn't get away with it."), then 3–4 fast facts: charges → findings → fired → lawsuit amount | Recap montage of earlier moments from the case |
+| 1:34–1:38 | **Moral punchline** | One sentence that generalises the case back to the premise | Hard cut to black. **No outro, no CTA, no end speech** |
+
+Rules this confirms:
+- The climax is the most damning piece of evidence, held long and given its own visual treatment.
+- Consequences are delivered as a rapid list of concrete outcomes with numbers, never vague.
+- The video ends within ~4 s of the last fact. The final line is the thesis, restated as a verdict.
+- Bridge between cases (still unseen): default to a one-line handoff that reuses the premise →
+  next case's date card.
 
 ## 6. Assets to ask the user for (only if needed)
 Ask once, in one message, after a clip is submitted, and only for things the edit can't do well without:
