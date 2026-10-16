@@ -5,7 +5,8 @@ The plan lists source segments (speed; "zoom" punch-in, or "push": [z0, z1] for 
 slow zoom; "focus": [x, y] 0-1 to aim it), dialogue
 captions in *source* time, a persistent hook title, timed pop-up labels and an
 optional freeze-frame end card. Caption/label times are remapped through the
-cuts automatically, so you only ever think in the original footage's timeline.
+cuts automatically (including repeated / out-of-order segments, e.g. a cold open),
+so you only ever think in the original footage's timeline.
 
   python3 tools/shorts.py plan.json input.mp4 -o short.mp4
 
@@ -36,18 +37,16 @@ def timeline(segs):
     return segs, t
 
 
-def remap(segs, t, snap):
-    """Source time -> output time. Times inside a cut snap forward/back."""
-    for i, s in enumerate(segs):
-        if s["start"] <= t <= s["end"]:
-            return s["out"] + (t - s["start"]) / s.get("speed", 1.0)
-        if t < s["start"]:
-            if snap == "next":
-                return s["out"]
-            prev = segs[i - 1] if i else None
-            return prev["out"] + (prev["end"] - prev["start"]) / prev.get("speed", 1.0) if prev else 0.0
-    last = segs[-1]
-    return last["out"] + (last["end"] - last["start"]) / last.get("speed", 1.0)
+def place(segs, a, b):
+    """Source span [a, b] -> output spans, one per segment that shows it.
+    Works for cuts, speed changes, and segments that repeat or play out of order."""
+    out = []
+    for s in segs:
+        lo, hi = max(a, s["start"]), min(b, s["end"])
+        if hi - lo > 0.05:
+            sp = s.get("speed", 1.0)
+            out.append((s["out"] + (lo - s["start"]) / sp, s["out"] + (hi - s["start"]) / sp))
+    return out
 
 
 def ts(t):
@@ -61,18 +60,17 @@ def build_ass(plan, segs, total):
     speakers = {}
     ev.append(f"Dialogue: 0,{ts(0)},{ts(total)},Title,,0,0,0,,{title}")
     for c in plan.get("captions", []):
-        a, b = remap(segs, c["start"], "next"), remap(segs, c["end"], "prev")
-        if b - a < 0.15:
-            continue
         sp = c.get("speaker", "")
         col = speakers.setdefault(sp, SPEAKER_PALETTE[len(speakers) % len(SPEAKER_PALETTE)])
-        size = "\\fs72" if c.get("emphasis") else ""
-        ev.append(f"Dialogue: 1,{ts(a)},{ts(b)},Cap,,0,0,0,,{{\\c{col}{size}}}{c['text']}")
+        size = "\\fs84" if c.get("emphasis") else ""
+        for a, b in place(segs, c["start"], c["end"]):
+            if b - a >= 0.15:
+                ev.append(f"Dialogue: 1,{ts(a)},{ts(b)},Cap,,0,0,0,,{{\\c{col}{size}}}{c['text']}")
     for p in plan.get("pops", []):
-        a = remap(segs, p["start"], "next") if "start" in p else total - plan.get("freeze", 0)
-        b = remap(segs, p["end"], "prev") if "end" in p else total
-        big = f"\\an5\\pos({W // 2},{TOP + SQ // 2})\\fs104\\c{RED}\\3c&H000000&\\bord3\\blur2" if p.get("big") else ""
-        ev.append(f"Dialogue: 2,{ts(a)},{ts(b)},Pop,,0,0,0,,{{{big}\\fad(120,0)\\t(0,180,\\fscx112\\fscy112)\\t(180,320,\\fscx100\\fscy100)}}{p['text']}")
+        spans = place(segs, p["start"], p["end"]) if "start" in p else [(total - plan.get("freeze", 0), total)]
+        big = f"\\an5\\pos({W // 2},{TOP + SQ // 2})\\fs104\\c{RED}\\3c&H000000&\\bord7\\blur1" if p.get("big") else ""
+        for a, b in spans:
+            ev.append(f"Dialogue: 2,{ts(a)},{ts(b)},Pop,,0,0,0,,{{{big}\\fad(120,0)\\t(0,180,\\fscx112\\fscy112)\\t(180,320,\\fscx100\\fscy100)}}{p['text']}")
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -82,8 +80,8 @@ WrapStyle: 0
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Title,Special Elite,78,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,0,0,1,3,4,8,50,50,140,1
-Style: Cap,Montserrat,62,&H00FFFFFF,&H00FFFFFF,&H00141414,&H96000000,1,0,0,0,100,100,-1,0,1,3,3,8,70,70,{TOP + SQ + 50},1
-Style: Pop,Special Elite,66,{PALE},{PALE},&H00000000,&H96000000,0,0,0,0,100,100,0,0,1,3,4,8,60,60,{TOP + 60},1
+Style: Cap,Montserrat,72,&H00FFFFFF,&H00FFFFFF,&H00141414,&H96000000,1,0,0,0,100,100,-1,0,1,3,3,8,70,70,{TOP + SQ + 50},1
+Style: Pop,Special Elite,66,{PALE},{PALE},&H00000000,&H96000000,0,0,0,0,100,100,0,0,1,6,4,8,60,60,{TOP + 60},1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text

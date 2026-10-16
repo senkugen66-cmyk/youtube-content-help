@@ -1,0 +1,35 @@
+{
+  "_note": "Doorbell cam: officers at a woman's door over a slap accusation. Times in SOURCE seconds. Speakers split by voice pitch; verify before posting.",
+  "title": "COPS THREATENED TO\\N*BREACH* HER DOOR",
+  "segments": [
+    {"start": 24.7, "end": 27.8,  "zoom": 1.45, "focus": [0.62, 0.32]},
+    {"start": 0.0,  "end": 13.75, "push": [1.0, 1.18], "focus": [0.6, 0.45]},
+    {"start": 16.8, "end": 20.5,  "zoom": 1.15, "focus": [0.6, 0.45]},
+    {"start": 20.5, "end": 24.0,  "push": [1.3, 1.6], "focus": [0.3, 0.4]},
+    {"start": 24.0, "end": 27.8,  "push": [1.15, 1.45], "focus": [0.62, 0.32]},
+    {"start": 36.6, "end": 41.25, "push": [1.15, 1.35], "focus": [0.5, 0.45]}
+  ],
+  "freeze": 1.8,
+  "captions": [
+    {"start": 0.0,  "end": 1.4,   "speaker": "OFFICER1", "text": "There is video of it."},
+    {"start": 1.5,  "end": 2.5,   "speaker": "WOMAN",    "text": "How did I slap him?"},
+    {"start": 2.6,  "end": 3.9,   "speaker": "OFFICER1", "text": "So you need to unlock the door."},
+    {"start": 4.0,  "end": 5.0,   "speaker": "WOMAN",    "text": "When did I slap him?"},
+    {"start": 6.1,  "end": 7.65,  "speaker": "WOMAN",    "text": "Please, please show me the video."},
+    {"start": 7.7,  "end": 9.0,   "speaker": "OFFICER1", "text": "I will show it to you."},
+    {"start": 9.25, "end": 10.6,  "speaker": "WOMAN",    "text": "I did not slap him."},
+    {"start": 10.7, "end": 13.7,  "speaker": "OFFICER1", "text": "If you don't unlock the door,\\Nwe'll force our way inside."},
+    {"start": 16.8, "end": 18.75, "speaker": "OFFICER1", "text": "We're trying to do this\\Nthe easy way."},
+    {"start": 20.6, "end": 23.1,  "speaker": "WOMAN",    "text": "I literally waited for you guys\\Nto report this for hours."},
+    {"start": 23.3, "end": 23.95, "speaker": "OFFICER1", "text": "I know."},
+    {"start": 24.8, "end": 26.75, "speaker": "OFFICER1", "text": "Right now, I will\\Nbreach this door.", "emphasis": true},
+    {"start": 26.85,"end": 27.8,  "speaker": "OFFICER1", "text": "Don't tempt me.", "emphasis": true},
+    {"start": 36.8, "end": 38.65, "speaker": "OFFICER2", "text": "It's hot pursuit of\\Na violent misdemeanor,"},
+    {"start": 38.7, "end": 41.25, "speaker": "OFFICER2", "text": "but we can't articulate the exigency\\Nbecause the victim's out of here.", "emphasis": true}
+  ],
+  "pops": [
+    {"start": 0.0,  "end": 1.6,  "text": "HOW IT STARTED"},
+    {"start": 38.7, "end": 41.25, "text": "EXIGENCY = AN EMERGENCY THAT\\NLETS POLICE ENTER WITHOUT A WARRANT"},
+    {"text": "THEN ADMITTED\\NTHEY COULDN'T\\NGO IN", "big": true}
+  ]
+}
