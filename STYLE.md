@@ -4,7 +4,7 @@ Source: reference video the channel owner licensed for style study, analysed chu
 We imitate **patterns** (structure, pacing, typography system, tone). Never reuse its script lines,
 footage, or its exact font files; the fonts below are free look-alikes in `assets/fonts/`.
 
-Status: built from reference **part 1** (0:00–2:30). Update as more parts arrive.
+Status: built from reference **part 1** (0:00–2:30). Case endings and transitions are genre defaults, marked ASSUMED.
 
 ---
 
@@ -80,6 +80,15 @@ Other visual rules:
 5. Loop: footage → narration ending on a tension line, × 4–8
 6. Mid-case cliffhanger before the biggest moment
 7. Outcome (what happened after: charges, lawsuit, firing) → bridge line to the next case
+
+### Case ending + transition (ASSUMED: the reference ending was not available)
+Genre-standard defaults until confirmed:
+- **Outcome card**: dark grunge background, Special Elite in red. One headline fact ("Charged with battery",
+  "Resigned 3 weeks later", "City settled for $X"), then 1–2 narration lines on what happened after.
+- **Bridge line** into the next case, reusing the premise: "But he wasn't the only one who thought [X]…"
+  → straight into the next case's date card.
+- **Video end**: finish on the strongest case. Close with one line that loops back to the premise, then a
+  5–10 s end screen. No "like and subscribe" speech.
 
 ## 6. Assets to ask the user for (only if needed)
 Ask once, in one message, after a clip is submitted, and only for things the edit can't do well without:
