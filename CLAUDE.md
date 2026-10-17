@@ -2,7 +2,8 @@
 
 SFW crime / bodycam / dashcam narration channel. Goal: high-retention edits.
 
-- **Follow `STYLE.md`** for every edit and script: structure, narration tone, typography, colours.
+- **Follow `EDITOR.md`** (the owner's editing philosophy: every decision needs a purpose, beat map
+  first, retention audit after) and **`STYLE.md`** for every edit and script: structure, narration tone, typography, colours.
   Fonts live in `assets/fonts/` (pass `fontsdir` to ffmpeg's `subtitles` filter).
 - `PLAYBOOK.md` has the SFW / licensing rules. They override STYLE.md if they conflict.
 - Tools: `tools/jumpcut.py` (silence cutting), `tools/shorts.py` (vertical Shorts from a JSON plan,
@@ -15,5 +16,7 @@ SFW crime / bodycam / dashcam narration channel. Goal: high-retention edits.
 2. Then, **only if necessary**, ask in ONE message for the assets the edit can't do without
    (see STYLE.md §6, e.g. officer headshot for the person card, department photo/patch, case outcome).
    If nothing is missing, don't ask; just edit.
-3. Draft the narration script in the STYLE.md voice and show it before rendering long-form edits.
-4. Flag uncertain transcript lines for the user to verify before posting.
+3. Write the beat map (EDITOR.md workflow) into the plan's `_beats`, then build.
+4. Audit the render as a viewer (sampled frames across the whole edit), revise, verify.
+5. Draft the narration script in the STYLE.md voice and show it before rendering long-form edits.
+6. Flag uncertain transcript lines for the user to verify before posting.
