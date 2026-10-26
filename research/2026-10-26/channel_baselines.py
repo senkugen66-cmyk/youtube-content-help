@@ -1,0 +1,23 @@
+import statistics as st
+import re
+def days(s):
+    m=re.match(r"(\d+)(h|d|w|mo|y)",s.replace(" ago",""))
+    n,u=int(m.group(1)),m.group(2)
+    return {"h":n/24,"d":n,"w":7*n,"mo":30*n,"y":365*n}[u]
+# (videoId, views, published) per channel, as returned by HasData channel tab=videos on 2026-10-26
+ch={
+"Intangible (33.9K subs)":("pK3FLCC6Qs0",[("F9X7JN5ESCo",6300,"5d"),("vcmzxwgZHyI",7600,"11d"),("pK3FLCC6Qs0",484000,"2w"),("3UKvNW2p5hw",1800,"2w"),("wBktawinW-g",49000,"3w"),("ZbT1SodiI3c",28000,"4w"),("icJR8Q_VVz4",11000,"1mo"),("gcKml5TesCc",3300,"1mo"),("zLmmVZMrs1w",9800,"1mo"),("iQ3M-WOzR6k",11000,"2mo"),("DashtAaxjnc",273000,"2mo"),("zS2Wt-qTlSs",28000,"2mo"),("SYkAuRcFCCU",4800,"3mo"),("DrNU9NtX_TA",38000,"3mo"),("vpk-8tlQ6X0",6400,"3mo"),("d50GSw_vSlk",664,"3mo"),("RMkb-_r2kDE",3600,"4mo"),("XOcin7oW9ng",16000,"4mo"),("15PLVmxiv9c",1700,"4mo"),("s8LBYQSpSCo",39000,"4mo"),("4oebSZookVE",8600,"5mo"),("UNkS30ObEBg",34000,"5mo"),("BoP0KiGUBaw",3000,"5mo"),("czvYElDl2SQ",2800,"5mo"),("vikBohNn56g",7800,"6mo"),("WCMXoBqn620",14000,"6mo"),("MRCMb8qs_rU",14000,"6mo"),("u4PrCMKGzJc",9400,"7mo"),("UrCAm8VEFrE",24000,"7mo"),("fY4gCoulaw0",1400,"8mo")]),
+"BlxeWolf (682K subs)":("9OUuqetxSAQ",[("ezQqgA6DP1c",20000,"1d"),("ioJ6Bo3xskU",87000,"5d"),("Qk8-fcC_76M",231000,"8d"),("dTAiAxa19nA",197000,"12d"),("0buuDB9XwX8",154000,"2w"),("Ku0FjJQmy1k",251000,"2w"),("WrDQ-bw4YbE",79000,"3w"),("gZcfT7kdbFo",31000,"3w"),("9OUuqetxSAQ",445000,"3w"),("CPK60bxVrrA",76000,"1mo"),("y9Q-ONGmHgM",70000,"1mo"),("ZBPaC0AF1pc",164000,"1mo"),("uizWzF3T_X0",261000,"1mo"),("W7DPM7DszwU",74000,"1mo"),("ivC7z7xxj8o",104000,"1mo"),("lxYM46537K4",173000,"1mo"),("QTlXrkhMXDs",211000,"1mo"),("2iWVu5Dd5Ys",78000,"1mo"),("SyzmDnOxoWs",62000,"1mo"),("FWfu35U6-uk",389000,"2mo"),("xCE1f0EoLco",56000,"2mo"),("E4Ok50zXLtI",543000,"2mo"),("A4QXMFi_3NE",74000,"2mo"),("RqaRXM0XZ04",90000,"2mo"),("UW3adOITfDI",68000,"2mo"),("ZttpfAyDWzM",125000,"2mo"),("63cBECwWx6M",28000,"2mo"),("_uG_10B-6fA",153000,"2mo"),("irT310LEVWA",38000,"2mo"),("n-ZKz4Dz_6k",58000,"3mo")]),
+"Rob Humm (168 subs)":("0D8Qk6JotAE",[("_pNXIbBez08",9,"1d"),("RKXeQmwxEgs",129,"2d"),("--6tx5IFva0",8,"2d"),("CD3qjGT1CuA",326,"4d"),("ku1s_gH0lws",272,"4d"),("c403pD7YVv4",2200,"5d"),("Q6CUMbtCVHI",498,"6d"),("2Uknw4A571k",5200,"7d"),("9VMPwb1AG24",25,"7d"),("XzyYn0Rgz5I",989,"9d"),("ZrdbMgQYl-M",141,"9d"),("Yr9fqJ6X6c0",139,"9d"),("gq9UpaIT5dg",69,"10d"),("qQ0lhpKSpLs",223,"11d"),("r3KtCOr7Goc",39,"11d"),("YyW-ZFlcP_8",262,"11d"),("fE8_4Af7Jdw",20,"12d"),("kL-Gos7EiRc",599,"13d"),("gaR_2ILGEa4",617,"2w"),("0ZAsgBBnD38",106,"2w"),("nOAOFliGQHw",119,"2w"),("TEMMrFViwuE",23000,"2w"),("0D8Qk6JotAE",42000,"2w"),("FAYfdlXBBBs",9,"2w"),("5m0ltqllMjE",66,"2w"),("GrzaY97E26A",11,"2w"),("dd8eMbM_QLk",42,"2w"),("0HyjV7ahk14",98,"2w"),("26vS_fnXDVA",5,"3w"),("zlx49EqItd4",135,"3w")]),
+"Macrolo (75K subs)":("xuQdQcpzB0Y",[("rO3B_f_q0BI",38000,"7d"),("LHBQGUuJc9c",36000,"13d"),("rXYT13uj3qU",60000,"2w"),("p0Mi-ESqgkM",42000,"1mo"),("e-YINFqPxto",97000,"1mo"),("7eCasEWbblE",55000,"1mo"),("xuQdQcpzB0Y",100000,"1mo"),("4xpYYNUmC3I",86000,"1mo"),("yLQVGiXiNA4",42000,"1mo"),("qqlTHixi7mQ",58000,"1mo"),("3p_nWZRfX4E",46000,"2mo"),("idBB-24aKx4",9100,"3mo"),("X4JamojtOgQ",11000,"3mo"),("9ZBnmNvKn8I",135000,"3mo"),("Fglob7ArMOs",10000,"3mo"),("3iWMrDXbZoo",18000,"3mo"),("xnc9cEJF1V8",11000,"3mo"),("ySgWeurS71c",22000,"3mo"),("0UTM8oL-3HM",64000,"3mo"),("tpQQZy_fiVk",2300,"3mo"),("XgtMfywgVjI",19000,"3mo"),("_-60oQ7F96U",36000,"3mo"),("DNrt2lYWPy0",10000,"3mo"),("hNYywS6KwWg",28000,"4mo"),("5UmAijyrw24",122000,"6mo"),("oDfa5Z8DCyU",46000,"6mo"),("MTnLadNJOk8",5300,"7mo"),("ktLUxu0gFdk",180000,"7mo"),("UUs6Po1fEM8",85000,"8mo"),("NJow7gXzTGU",181000,"8mo")]),
+"The Greatest Developer (71.7K subs)":("7pA-9rinD44",[("NA8gTa-GFro",1400000,"2mo"),("7pA-9rinD44",900000,"3mo"),("xvHEkskBt2Y",49000,"6mo"),("TO3tIw4L73E",20000,"9mo"),("JgGa2pdUM7s",193000,"10mo"),("Vn-7hg-gj74",442000,"10mo")]),
+}
+# Meowdoku is older than WalrusLimePie's 30 most recent uploads; compare to its own 'Badvertising' series in that window
+wlp=[7800,8700,16000,97000,11000,4800,11000,12000,31000]  # excludes the 20h-old upload
+print(f"{'channel':38} {'target':12} {'views':>9} {'median(others,>=7d)':>20} {'ratio':>7} n")
+for name,(tid,vids) in ch.items():
+    t=[v for v in vids if v[0]==tid][0]
+    others=[v[1] for v in vids if v[0]!=tid and days(v[2])>=7]
+    med=st.median(others)
+    print(f"{name:38} {tid:12} {t[1]:>9} {med:>20.0f} {t[1]/med:>7.1f} {len(others)}")
+print(f"{'WalrusLimePie (14.6K) Badvertising only':38} {'lYBvP2T-jU8':12} {468521:>9} {st.median(wlp):>20.0f} {468521/st.median(wlp):>7.1f} {len(wlp)}")

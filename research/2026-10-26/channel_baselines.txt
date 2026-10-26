@@ -1,0 +1,7 @@
+channel                                target           views  median(others,>=7d)   ratio n
+Intangible (33.9K subs)                pK3FLCC6Qs0     484000                 9600    50.4 28
+BlxeWolf (682K subs)                   9OUuqetxSAQ     445000                90000     4.9 27
+Rob Humm (168 subs)                    0D8Qk6JotAE      42000                  112   373.3 22
+Macrolo (75K subs)                     xuQdQcpzB0Y     100000                42000     2.4 29
+The Greatest Developer (71.7K subs)    7pA-9rinD44     900000               193000     4.7 5
+WalrusLimePie (14.6K) Badvertising only lYBvP2T-jU8     468521                11000    42.6 9
