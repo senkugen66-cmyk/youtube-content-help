@@ -1,0 +1,352 @@
+<title>MeowDude Ep. 01 — Roll Into It</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+@font-face{font-family:"Archivo";src:url(data:font/woff2;base64,__FONT_ARCHIVO__) format("woff2");font-weight:100 900;font-stretch:62% 125%}
+@font-face{font-family:"Shantell Sans";src:url(data:font/woff2;base64,__FONT_SHANTELL__) format("woff2");font-weight:300 800}
+:root{
+  /* layout: one 1920x1080 stage scaled to the viewer width, with a slim frame-accurate transport bar under it */
+  --ink:#17161f;--paper:#eceaf3;--night:#22223a;--tangerine:#ff7a2f;--marker:#ffd84a;--signal:#3ec5e8;--alert:#ff5c8a;
+  --page:#2b2b45;--page-text:#eceaf3;--page-muted:#b6b4c8;
+  --font-clean:Archivo,"Arial Narrow",Arial,sans-serif;--font-hand:"Shantell Sans","Comic Neue","Segoe Print",sans-serif;
+  color-scheme:dark;
+}
+html,body{background:var(--page);color:var(--page-text)}
+body{font-family:var(--font-clean);padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.viewport{position:relative;width:100%;max-width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:var(--paper)}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;background:var(--paper)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font:500 15px/1.2 var(--font-clean);color:var(--page-muted)}
+.bar button{font:700 15px/1 var(--font-clean);color:var(--ink);background:var(--paper);border:2px solid var(--ink);border-radius:8px;padding:8px 14px;box-shadow:0 3px 0 var(--ink);cursor:pointer}
+.bar button:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+.bar button:focus-visible,#scrub:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+#scrub{flex:1 1 200px;min-width:0;accent-color:var(--tangerine)}
+#tc{font-variant-numeric:tabular-nums;min-width:15ch;color:var(--page-text)}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.head h1{margin:0;font:800 22px/1.1 var(--font-clean);font-stretch:112%;text-wrap:balance}
+.head p{margin:0;color:var(--page-muted);font-size:15px}
+
+/* ---- stage layers (all coordinates in 1080p pixels) ---- */
+#stage>*,#text>*,#endText>*{position:absolute}
+#ground{inset:0;background:var(--paper)}
+#fx,#wipe,#endfx{left:0;top:0;width:1920px;height:1080px;overflow:visible}
+#mascot{left:96px;top:514px;width:456px;height:470px;transform-origin:50% 92%}
+#mascot svg,#endMascot svg{width:100%;height:100%;display:block}
+.ins{left:96px;top:96px;margin:0;font:800 72px/1 var(--font-clean);font-stretch:112%;letter-spacing:-.01em;color:var(--ink);transform-origin:0 50%;white-space:nowrap}
+.mk{position:relative;isolation:isolate;padding:0 .12em}
+.mk::before{content:"";position:absolute;inset:-.02em 0 -.06em;z-index:-1;background:var(--marker);clip-path:polygon(0 8%,100% 0,99% 92%,1% 100%);transform-origin:left;transform:scaleX(var(--sw,0))}
+.note{margin:0;font:600 48px/1.1 var(--font-hand);color:var(--ink);white-space:nowrap}
+.note span{display:inline-block;transform-origin:50% 80%}
+.tl{font:600 36px/1 var(--font-hand);color:var(--ink);white-space:nowrap}
+.word{font:800 150px/.92 var(--font-clean);font-stretch:112%;letter-spacing:-.01em;color:var(--paper);transform-origin:0 50%}
+#endMascot{left:300px;top:300px;width:456px;height:470px;transform-origin:50% 92%}
+@media (prefers-reduced-motion: reduce){.bar button{transition:none}}
+</style>
+
+<div class="wrap">
+  <div class="head"><h1>Ep. 01 · Roll into it</h1><p>Sample MeowDude tutorial, 25 s at 30 fps, built from the brand kit.</p></div>
+  <div class="viewport" id="vp"><div id="stage">
+    <div id="ground"></div>
+    <svg id="fx" viewBox="0 0 1920 1080"></svg>
+    <div id="mascot"></div>
+    <div id="text"></div>
+    <svg id="wipe" viewBox="0 0 1920 1080"></svg>
+    <svg id="endfx" viewBox="0 0 1920 1080"></svg>
+    <div id="endMascot"></div>
+    <div id="endText"></div>
+  </div></div>
+  <div class="bar">
+    <button id="play" type="button">Pause</button>
+    <button id="restart" type="button">Restart</button>
+    <input id="scrub" type="range" min="0" max="749" value="0" aria-label="Frame">
+    <span id="tc">f 000 · 00:00:00</span>
+  </div>
+</div>
+
+<script>
+const SVG = __SVGS__;
+const FPS = 30, TOTAL = 750;
+const C = {ink:'#17161f',paper:'#eceaf3',night:'#22223a',tangerine:'#ff7a2f',marker:'#ffd84a',signal:'#3ec5e8',alert:'#ff5c8a'};
+const NS = 'http://www.w3.org/2000/svg';
+const $ = id => document.getElementById(id);
+
+/* ---------- timing helpers (frames) ---------- */
+const clamp = t => Math.max(0, Math.min(1, t));
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+const easeInOut = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+// 6-frame pop: 0 -> 108% in 4 frames, settle to 100% in 2. Optional 4-frame exit.
+function pop(f, s, exit) {
+  if (exit !== undefined && f >= exit) return Math.max(0, 1 - (f - exit) / 4);
+  const t = (f - s) / 6;
+  if (t < 0) return 0;
+  if (t >= 1) return 1;
+  return t < 4/6 ? 1.08 * easeOut(t * 1.5) : 1.08 - .08 * ((t - 4/6) * 3);
+}
+const draw = (f, s, d) => easeInOut(clamp((f - s) / d));
+const live = (f, a, b) => f >= a && f < b;
+
+/* ---------- builders ---------- */
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  parent && parent.appendChild(e);
+  return e;
+}
+function html(tag, cls, parent, inner) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (inner !== undefined) e.innerHTML = inner;
+  parent.appendChild(e);
+  return e;
+}
+function strokePath(parent, d, color, w) {
+  const p = el('path', {d, fill:'none', stroke:color, 'stroke-width':w, 'stroke-linecap':'round', 'stroke-linejoin':'round'}, parent);
+  const L = p.getTotalLength(); p.style.strokeDasharray = L; p._L = L; return p;
+}
+const reveal = (p, k) => { p.style.strokeDashoffset = p._L * (1 - k); p.style.visibility = k > 0 ? 'visible' : 'hidden'; };
+function popAt(node, k, cx, cy) {
+  node.setAttribute('transform', `translate(${cx} ${cy}) scale(${k}) translate(${-cx} ${-cy})`);
+  node.style.visibility = k > 0 ? 'visible' : 'hidden';
+}
+function inner(svgText) { return svgText.replace(/^[\s\S]*?<title>[\s\S]*?<\/title>/, '').replace(/<\/svg>\s*$/, ''); }
+
+/* ---------- static scene construction ---------- */
+const fx = $('fx');
+// Game panel (simplified UI, Paper fill, ink outline)
+const panel = el('g', {}, fx);
+el('rect', {x:720, y:220, width:1104, height:540, rx:18, fill:C.paper, stroke:C.ink, 'stroke-width':6}, panel);
+el('line', {x1:720, y1:272, x2:1824, y2:272, stroke:C.ink, 'stroke-width':6}, panel);
+[[752,C.alert],[784,C.marker],[816,C.signal]].forEach(([x,c]) => el('circle', {cx:x, cy:246, r:9, fill:c, stroke:C.ink, 'stroke-width':4}, panel));
+const ptitle = el('text', {x:1792, y:258, 'text-anchor':'end', 'font-family':'Archivo', 'font-weight':700, 'font-size':30, fill:C.ink}, panel);
+ptitle.textContent = 'Boss fight';
+el('line', {x1:760, y1:700, x2:1784, y2:700, stroke:C.ink, 'stroke-width':6, 'stroke-linecap':'round'}, panel);
+
+// Enemy: a night slab with a club. Eyes flash marker on the tell.
+const enemy = el('g', {}, panel);
+const club = el('g', {}, enemy);
+el('line', {x1:0, y1:0, x2:-130, y2:0, stroke:C.ink, 'stroke-width':10, 'stroke-linecap':'round'}, club);
+el('circle', {cx:-150, cy:0, r:28, fill:C.paper, stroke:C.ink, 'stroke-width':6}, club);
+el('rect', {x:1540, y:420, width:180, height:280, rx:40, fill:C.night, stroke:C.ink, 'stroke-width':6}, enemy);
+const eyes = [el('rect', {x:1578, y:478, width:18, height:32, rx:9, fill:C.paper}, enemy), el('rect', {x:1634, y:474, width:18, height:32, rx:9, fill:C.paper}, enemy)];
+el('path', {d:'M 1586 548 L 1646 540', stroke:C.paper, 'stroke-width':6, 'stroke-linecap':'round'}, enemy);
+
+// Attack trail: arc around the enemy's feet, from high to the floor.
+const arcR = 440, arcC = [1545, 700];
+const pt = a => [arcC[0] + arcR*Math.cos(a*Math.PI/180), arcC[1] + arcR*Math.sin(a*Math.PI/180)];
+const [ax0, ay0] = pt(-120), [ax1, ay1] = pt(-180);
+const attack = strokePath(panel, `M ${ax0} ${ay0} A ${arcR} ${arcR} 0 0 0 ${ax1} ${ay1}`, C.alert, 16);
+
+// Mini MeowDude, the player inside the game
+const iframeDisc = el('circle', {r:86, fill:C.marker, stroke:C.ink, 'stroke-width':5}, panel);
+const player = el('g', {}, panel);
+const pSvg = el('svg', {viewBox:'-30 0 320 330', width:126, height:130, x:-63, y:-65}, player);
+pSvg.innerHTML = inner(SVG.neutral);
+
+// Marks
+const cross = el('g', {}, fx);
+strokePath(cross, 'M 0 0 L 62 66 M 60 -2 L 2 64', C.alert, 12);
+const check = el('g', {}, fx);
+strokePath(check, 'M 0 36 L 24 62 L 70 0', C.signal, 12);
+
+// Frame-data timeline for the roll (30 frames: 4 start-up, 14 invincible, 12 recovery)
+const tl = el('g', {}, fx);
+const PX = 1104 / 30, TX = 720, TY = 812;
+[[0,4,C.paper],[4,18,C.marker],[18,30,C.paper]].forEach(([a,b,c]) =>
+  el('rect', {x:TX + a*PX, y:TY, width:(b-a)*PX, height:48, fill:c, stroke:C.ink, 'stroke-width':5}, tl));
+const playhead = el('line', {x1:TX, y1:TY - 16, x2:TX, y2:TY + 64, stroke:C.ink, 'stroke-width':6, 'stroke-linecap':'round'}, tl);
+const tlLab = [['start-up',0,4],['invincible',4,18],['recovery',18,30]].map(([t,a,b]) => {
+  const x = el('text', {x:TX + (a+b)/2*PX, y:TY + 96, 'text-anchor':'middle', 'font-family':'Shantell Sans', 'font-weight':600, 'font-size':34, fill:C.ink}, tl);
+  x.textContent = t; return x;
+});
+const tlFrames = el('text', {x:TX, y:TY + 150, 'font-family':'Archivo', 'font-weight':700, 'font-size':28, fill:C.ink}, tl);
+tlFrames.textContent = 'Roll · 30 frames';
+
+// Scene 4: the tell -> press
+const tell = el('g', {}, fx);
+el('rect', {x:760, y:400, width:220, height:220, rx:40, fill:C.night, stroke:C.ink, 'stroke-width':6}, tell);
+const tellEyes = [el('rect', {x:812, y:466, width:22, height:40, rx:11, fill:C.paper}, tell), el('rect', {x:902, y:460, width:22, height:40, rx:11, fill:C.paper}, tell)];
+el('path', {d:'M 826 556 L 906 546', stroke:C.paper, 'stroke-width':7, 'stroke-linecap':'round'}, tell);
+const tellArrow = strokePath(fx, 'M 1030 512 C 1110 504, 1180 508, 1262 500 M 1240 482 L 1264 500 L 1242 520', C.ink, 6);
+const key = el('g', {}, fx);
+el('rect', {x:1320, y:430, width:440, height:150, rx:22, fill:C.ink}, key);
+const keyCap = el('g', {}, key);
+el('rect', {x:1320, y:420, width:440, height:146, rx:22, fill:C.paper, stroke:C.ink, 'stroke-width':6}, keyCap);
+const kt = el('text', {x:1540, y:514, 'text-anchor':'middle', 'font-family':'Archivo', 'font-weight':800, 'font-size':60, fill:C.ink}, keyCap);
+kt.textContent = 'Space';
+
+// Text layers
+const text = $('text');
+function ins(htmlStr) { const p = html('p', 'ins', text, htmlStr); return p; }
+function note(words, x, y, rot, color) {
+  const p = html('p', 'note', text);
+  p.style.left = x + 'px'; p.style.top = y + 'px'; p.style.rotate = rot + 'deg';
+  if (color) p.style.color = color;
+  p._w = words.split(' ').map(w => { const s = html('span', '', p, w); p.appendChild(document.createTextNode(' ')); return s; });
+  return p;
+}
+const INS = [
+  ins('Stop rolling <span class="mk">away</span>.'),
+  ins('Its reach is <span class="mk">longer</span>'),
+  ins('Roll <span class="mk">into</span> the swing'),
+  ins('Press it <span class="mk">as it swings</span>'),
+];
+const N = {
+  aside: note('(it never works)', 1000, 102, -3),
+  hit: note('still hit.', 880, 600, -4),
+  free: note('free hit', 1560, 330, 3),
+  inv: note('this is the trick', 1010, 928, -2),
+  moves: note('the moment it moves', 1330, 620, -3),
+};
+
+// Wipe + end card
+const wipe = $('wipe');
+const wRect = el('rect', {x:0, y:0, width:0, height:1080, fill:C.night}, wipe);
+const wTail = el('line', {x1:0, y1:540, x2:0, y2:540, stroke:C.paper, 'stroke-width':10, 'stroke-linecap':'round'}, wipe);
+const wTip = el('polygon', {points:'0,-34 60,0 0,34', fill:C.tangerine, stroke:C.ink, 'stroke-width':6, 'stroke-linejoin':'round'}, wipe);
+const endText = $('endText');
+const word = html('div', 'word', endText, 'MeowDude'); word.style.left = '860px'; word.style.top = '380px';
+const nextNote = note('next: parry windows', 868, 560, -2, C.paper); endText.appendChild(nextNote);
+const endfx = $('endfx');
+const endUL = strokePath(endfx, 'M 1010 640 C 1100 632, 1220 646, 1340 632', C.marker, 8);
+
+// Mascot pose track
+const POSES = [[0,'neutral'],[90,'think'],[176,'oops'],[300,'point'],[416,'hype'],[510,'point']];
+let curPose = '', curEnd = '';
+const mascot = $('mascot'), endMascot = $('endMascot');
+function poseAt(f) { let p = POSES[0]; for (const q of POSES) if (f >= q[0]) p = q; return p; }
+
+/* ---------- render one frame ---------- */
+function render(f) {
+  const [pStart, pName] = poseAt(f);
+  if (pName !== curPose) { mascot.innerHTML = SVG[pName]; curPose = pName; }
+  // squash on pose change (2 frames), pop on entry
+  const k = pop(f, 4);
+  const sq = f - pStart < 2 && pStart > 0 ? [1.06, .94] : [1, 1];
+  mascot.style.transform = `scale(${k * sq[0]}, ${k * sq[1]})`;
+  mascot.style.visibility = f < 670 && k > 0 ? 'visible' : 'hidden';
+
+  // Instructions: hard cuts between scenes, pop on entry, highlight swipe 2 frames after
+  const insT = [[12,0,90],[110,90,300],[312,300,510],[524,510,670]];
+  INS.forEach((p, i) => {
+    const [s, a, b] = insT[i];
+    const on = live(f, a, b);
+    p.style.visibility = on ? 'visible' : 'hidden';
+    p.style.transform = `scale(${on ? pop(f, s) : 0})`;
+    p.querySelector('.mk').style.setProperty('--sw', easeOut(clamp((f - s - 8) / 6)));
+  });
+
+  // Handwritten notes: one word every 3 frames, 2-frame pop each
+  const noteT = {aside:[34,0,90], hit:[184,176,300], free:[426,416,510], inv:[352,300,510], moves:[566,510,670]};
+  for (const id in noteT) {
+    const [s, a, b] = noteT[id], n = N[id], on = live(f, a, b);
+    n.style.visibility = on ? 'visible' : 'hidden';
+    n._w.forEach((w, i) => { const t = clamp((f - s - i*3) / 2); w.style.transform = `scale(${t < 1 ? t * 1.08 : 1})`; });
+  }
+
+  // Panel, scenes 2-3
+  const pOn = live(f, 90, 510);
+  panel.style.visibility = pOn ? 'visible' : 'hidden';
+  popAt(panel, pOn ? (f < 300 ? pop(f, 92) : 1) : 0, 1272, 490);
+  popAt(enemy, f < 300 ? pop(f, 98) : 1, 1630, 700);
+
+  // enemy tell, club wind-up and swing
+  const tellOn = live(f, 140, 146) || live(f, 370, 376);
+  eyes.forEach(e => e.setAttribute('fill', tellOn ? C.marker : C.paper));
+  const local = f < 300 ? f - 130 : f - 360;
+  // club direction in degrees (0 = right, 90 = down): rest 135, wind-up 250, swing to 160, settle
+  let ang = 135;
+  if (local >= 0 && local < 20) ang = 135 + 115 * easeOut(local / 20);
+  else if (local >= 20 && local < 32) ang = 250 - 90 * easeInOut((local - 20) / 12);
+  else if (local >= 32 && local < 60) ang = 160 - 25 * clamp((local - 32) / 20);
+  club.setAttribute('transform', `translate(1546 560) rotate(${ang - 180})`);
+
+  // attack trail: draws 12 frames, exits 4 frames later
+  const atkS = f < 300 ? 160 : 396;
+  const atkK = draw(f, atkS, 12);
+  reveal(attack, f >= atkS + 26 ? 0 : atkK);
+
+  // player: roll away (scene 2) or roll into (scene 3)
+  let px = 1180, rot = 0, pk = 0;
+  if (f < 300) {
+    pk = pop(f, 102);
+    const t = clamp((f - 150) / 20);
+    px = 1180 - 120 * easeOut(t); rot = -360 * t;
+    if (f >= 172 && f < 176) rot = 0;
+  } else {
+    pk = pop(f, 302);
+    const t = clamp((f - 392) / 20);
+    px = 1180 + 260 * easeOut(t); rot = 360 * t;
+  }
+  const hitSq = live(f, 172, 176) ? 'scale(1.12 .86)' : '';
+  player.setAttribute('transform', `translate(${px} 644) rotate(${rot}) scale(${pk}) ${hitSq}`);
+  const iOn = live(f, 394, 408);
+  iframeDisc.setAttribute('cx', px); iframeDisc.setAttribute('cy', 636);
+  iframeDisc.style.visibility = iOn ? 'visible' : 'hidden';
+
+  // marks
+  const ck = f < 300 ? pop(f, 174) : 0;
+  cross.setAttribute('transform', `translate(1050 470) scale(${ck})`);
+  cross.querySelectorAll('path').forEach(p => reveal(p, ck > 0 ? draw(f, 174, 6) : 0));
+  const kk = live(f, 414, 510) ? pop(f, 414) : 0;
+  check.setAttribute('transform', `translate(1420 470) scale(${kk})`);
+  check.querySelectorAll('path').forEach(p => reveal(p, kk > 0 ? draw(f, 414, 6) : 0));
+
+  // timeline
+  const tOn = live(f, 300, 510);
+  popAt(tl, tOn ? pop(f, 316) : 0, 1272, 860);
+  const ph = clamp((f - 392) / 30);
+  playhead.setAttribute('x1', TX + ph * 1104); playhead.setAttribute('x2', TX + ph * 1104);
+
+  // scene 4: tell -> press
+  const s4 = live(f, 510, 670);
+  popAt(tell, s4 ? pop(f, 530) : 0, 870, 510);
+  reveal(tellArrow, s4 ? draw(f, 540, 10) : 0);
+  popAt(key, s4 ? pop(f, 536) : 0, 1540, 500);
+  const flash = live(f, 584, 592) || live(f, 624, 632);
+  tellEyes.forEach(e => e.setAttribute('fill', flash ? C.marker : C.paper));
+  const pressed = live(f, 588, 592) || live(f, 628, 632);
+  keyCap.setAttribute('transform', pressed ? 'translate(0 8)' : '');
+
+  // tail wipe (10 frames) and end card on Night
+  const wk = easeInOut(clamp((f - 660) / 10));
+  const wx = wk * 2000 - 40;
+  wRect.setAttribute('width', Math.max(0, wx));
+  wTail.setAttribute('x2', Math.max(0, wx - 10));
+  wTip.setAttribute('transform', `translate(${wx - 20} 540)`);
+  const wOn = f >= 660;
+  wipe.style.visibility = wOn ? 'visible' : 'hidden';
+  wTail.style.visibility = wTip.style.visibility = f >= 660 && f < 672 ? 'visible' : 'hidden';
+
+  if (f >= 670 && curEnd !== 'hype') { endMascot.innerHTML = SVG.hype; curEnd = 'hype'; }
+  const ek = f >= 670 ? pop(f, 674) : 0;
+  endMascot.style.transform = `scale(${ek})`;
+  endMascot.style.visibility = ek > 0 ? 'visible' : 'hidden';
+  word.style.transform = `scale(${f >= 670 ? pop(f, 680) : 0})`;
+  nextNote.style.visibility = f >= 670 ? 'visible' : 'hidden';
+  nextNote._w.forEach((w, i) => { const t = clamp((f - 692 - i*3) / 2); w.style.transform = `scale(${t})`; });
+  reveal(endUL, f >= 670 ? draw(f, 706, 10) : 0);
+}
+window.render = render;
+
+/* ---------- player ---------- */
+const vp = $('vp'), stage = $('stage');
+function fit() { stage.style.transform = `scale(${vp.clientWidth / 1920})`; }
+addEventListener('resize', fit); fit();
+let frame = 0, playing = !new URLSearchParams(location.search).has('render'), last = 0;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const tc = $('tc'), scrub = $('scrub'), playBtn = $('play');
+function show(f) {
+  frame = f; render(f); scrub.value = f;
+  const s = Math.floor(f / FPS), ff = f % FPS;
+  tc.textContent = `f ${String(f).padStart(3,'0')} · 00:${String(s).padStart(2,'0')}:${String(ff).padStart(2,'0')}`;
+}
+function setPlaying(p) { playing = p; playBtn.textContent = p ? 'Pause' : 'Play'; }
+playBtn.onclick = () => setPlaying(!playing);
+$('restart').onclick = () => { show(0); setPlaying(true); };
+scrub.oninput = () => { setPlaying(false); show(+scrub.value); };
+if (reduce) { setPlaying(false); show(420); } else show(0);
+function tick(now) {
+  if (playing && now - last >= 1000 / FPS) { last = now; show((frame + 1) % TOTAL); }
+  requestAnimationFrame(tick);
+}
+if (!new URLSearchParams(location.search).has('render')) requestAnimationFrame(tick);
+</script>
