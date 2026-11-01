@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 0 320 330" role="img">
+  <title>MeowDude — deadpan</title>
+  <path d="M 196 256 C 236 262, 252 222, 238 192" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><polygon points="230.4,175.7 250.5,192.8 230.6,202.1" fill="#FF7A2F" stroke="#17161F" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M 112 290 L 110 308 L 98 308 M 158 290 L 160 308 L 172 308" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 70 262 C 60 220, 58 160, 64 112 L 74 34 L 118 80 Q 140 74, 160 80 L 190 44 L 210 58 L 200 116 C 210 168, 208 222, 198 262 C 192 286, 162 292, 134 292 C 104 292, 76 288, 70 262 Z" fill="#FF7A2F" stroke="#17161F" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M 190 46 L 195 82" fill="none" stroke="#17161F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 102 140 L 120 140 M 146 138 L 164 138" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round"/><rect x="104" y="140" width="15" height="12" rx="6" fill="#17161F"/><rect x="148" y="138" width="15" height="12" rx="6" fill="#17161F"/>
+  <path d="M 124 177 q 12 6 24 -6" fill="none" stroke="#17161F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="100" y="196" width="68" height="58" rx="12" fill="#ECEAF3" stroke="#17161F" stroke-width="5"/>
+  <path d="M 66 196 C 40 196, 30 176, 26 160" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="156" r="9" fill="#FF7A2F" stroke="#17161F" stroke-width="5"/>
+  <path d="M 202 196 C 228 196, 238 176, 242 160" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="244" cy="156" r="9" fill="#FF7A2F" stroke="#17161F" stroke-width="5"/>
+</svg>

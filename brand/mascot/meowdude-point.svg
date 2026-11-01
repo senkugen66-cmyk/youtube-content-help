@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 0 320 330" role="img">
+  <title>MeowDude — point</title>
+  <path d="M 196 256 C 236 260, 262 250, 276 230" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><polygon points="286.3,215.3 281.6,241.2 263.5,228.6" fill="#FF7A2F" stroke="#17161F" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M 112 290 L 110 308 L 98 308 M 158 290 L 160 308 L 172 308" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 70 262 C 60 220, 58 160, 64 112 L 74 34 L 118 80 Q 140 74, 160 80 L 190 44 L 210 58 L 200 116 C 210 168, 208 222, 198 262 C 192 286, 162 292, 134 292 C 104 292, 76 288, 70 262 Z" fill="#FF7A2F" stroke="#17161F" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M 190 46 L 195 82" fill="none" stroke="#17161F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="108" y="128.0" width="15" height="28" rx="7.5" fill="#17161F"/><rect x="152" y="126.0" width="15" height="28" rx="7.5" fill="#17161F"/>
+  <path d="M 124 177 q 12 6 24 -6" fill="none" stroke="#17161F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="100" y="196" width="68" height="58" rx="12" fill="#3EC5E8" stroke="#17161F" stroke-width="5"/><path d="M 116 225 H 151 M 140 213 L 152 225 L 140 237" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 66 200 C 42 204, 40 228, 62 232" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="232" r="9" fill="#FF7A2F" stroke="#17161F" stroke-width="5"/>
+  <path d="M 202 192 C 228 182, 248 160, 262 140" fill="none" stroke="#17161F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="264" cy="137" r="9" fill="#FF7A2F" stroke="#17161F" stroke-width="5"/>
+</svg>

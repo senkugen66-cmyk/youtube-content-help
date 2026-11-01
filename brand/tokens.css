@@ -1,0 +1,67 @@
+/* MeowDude tokens — mirror of brand/tokens.json for web overlays, Remotion,
+   HyperFrames or any HTML-based motion work. Flat colours only. */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Shantell+Sans:wght@500;600&display=swap");
+
+:root {
+  /* palette */
+  --ink: #17161f;
+  --paper: #eceaf3;
+  --night: #22223a;
+  --tangerine: #ff7a2f;
+  --marker: #ffd84a;
+  --signal: #3ec5e8;
+  --alert: #ff5c8a;
+
+  /* roles (Paper ground) */
+  --ground: var(--paper);
+  --text: var(--ink);
+  --line: var(--ink);
+
+  /* type */
+  --font-clean: Archivo, "Arial Narrow", Arial, sans-serif;
+  --font-hand: "Shantell Sans", "Comic Neue", "Segoe Print", sans-serif;
+
+  /* layout at 1920x1080 */
+  --space-1: 12px;
+  --space-2: 24px;
+  --space-3: 48px;
+  --space-4: 96px;
+  --radius-screen: 12px;
+  --radius-key: 16px;
+  --radius-panel: 18px;
+
+  /* line weights */
+  --stroke-body: 6px;
+  --stroke-detail: 5px;
+  --stroke-mark: 9px;
+
+  /* motion (30 fps) */
+  --frame: 33.333ms;
+  --pop: calc(var(--frame) * 6);
+  --draw: calc(var(--frame) * 10);
+  --exit: calc(var(--frame) * 4);
+  --ease-pop: cubic-bezier(0.2, 0.9, 0.3, 1.25);
+  --ease-draw: cubic-bezier(0.45, 0, 0.25, 1);
+}
+
+/* Night ground: only the ground, text and annotation line swap. The mascot
+   and props keep ink outlines on both grounds. */
+.ground-night {
+  --ground: var(--night);
+  --text: var(--paper);
+  --line: var(--paper);
+}
+
+.md-instruction { font: 800 72px/1 var(--font-clean); font-stretch: 112%; letter-spacing: -0.01em; color: var(--text); }
+.md-label       { font: 700 40px/1.1 var(--font-clean); color: var(--text); }
+.md-caption     { font: 500 34px/1.25 var(--font-clean); color: var(--text); }
+.md-note        { font: 600 48px/1.1 var(--font-hand); color: var(--text); }
+.md-aside       { font: 500 36px/1.15 var(--font-hand); color: var(--text); rotate: -3deg; }
+
+/* The one highlighted word in an instruction. */
+.md-mark {
+  background: var(--marker);
+  color: var(--ink);
+  padding: 0 0.12em;
+  clip-path: polygon(0 8%, 100% 0, 99% 92%, 1% 100%);
+}
