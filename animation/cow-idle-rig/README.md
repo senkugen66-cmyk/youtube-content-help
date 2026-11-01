@@ -17,3 +17,7 @@ The artwork isn't committed. It belongs to the artist (ARVANES), so get their pe
 - **hop** (3 s, two hops): crouch, launch with a stretch, airborne arc, squash on landing, settle. The ears and tail trail the body's speed, and the shadow fades while airborne.
 - **sway** (4 s at 120 BPM): rocks to one side per beat and dips through the centre. The head counter-tilts, and the ears, bell and tail swing like pendulums.
 - **shy** (4 s, starts and ends neutral): ears droop and tremble, head tilts down, shoulders shrug, eyes glance away, cheeks blush, then the pose relaxes back.
+
+## Cinematic 16:9 reveal (`film.py`)
+
+`python3 film.py 0 240 out.mp4` renders the 10 s, 1280x720, 24 fps clip (`film.py preview 60,150` saves single frames instead). The camera starts on the shoes, tilts up to a face close-up, then pulls back to a waist shot and slowly pushes in. Four-leaf clovers drift past at different depths, a gold light trail sweeps around the character, and sparkles and bokeh fill the background. The character does an idle, then a shy beat. The character layer is rendered at 3x so the close-up stays sharp.

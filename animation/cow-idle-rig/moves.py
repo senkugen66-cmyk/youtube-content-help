@@ -1,9 +1,9 @@
 """Four performance clips on the mesh-warp rig: bounce, hop, sway, shy."""
-import numpy as np, sys, subprocess, math
+import numpy as np, sys, subprocess, math, os
 from PIL import Image, ImageFilter, ImageDraw, ImageFont
 FPS = 30
 CW, CH = 1080, 1920
-K = 2.1
+K = float(os.environ.get("MOVES_K", 2.1))
 X0, Y0 = 160, 15
 OY = 160
 FOOT, HIP = 700, 345
