@@ -119,7 +119,7 @@
 
   <div class="caption">
     <div class="footer" id="footer"></div>
-    <div class="note">Reconstructed from the participant's interview notes. The Instagram DM layout is used only as a presentation format and does not indicate where or how the interview took place. Name, username and avatar are anonymised.</div>
+    <div class="note">Reconstructed from the participant's interview notes. The Instagram DM layout is used only as a presentation format and does not indicate where or how the interview took place. Names and usernames are anonymised, and profile pictures are placeholder images, not photos of participants.</div>
   </div>
 </div>
 
@@ -132,6 +132,9 @@
 
   function avatarSVG(a, size) {
     const s = size;
+    if (a.kind === "image") {
+      return `<img src="${a.src}" width="${s}" height="${s}" style="display:block;border-radius:50%;object-fit:cover;background:#fff">`;
+    }
     let inner = "";
     if (a.kind === "initial") {
       inner = `<text x="50" y="50" dy=".35em" text-anchor="middle" font-family="Inter" font-weight="600" font-size="46" fill="#fff">${a.letter}</text>`;

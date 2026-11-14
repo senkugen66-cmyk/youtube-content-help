@@ -2,14 +2,15 @@
 
 **All 10 screens are illustrative reconstructions. None of them is an original chat record.** No genuine DM or interview transcripts were available. Each screen is reconstructed from the participant notes in the project brief.
 
-Instagram's DM layout is only a presentation format. It does not indicate where or how any interview took place. A caption under every phone says this. Names, usernames and avatars are anonymised. Avatars are simple shapes or initials, not photographs.
+Instagram's DM layout is only a presentation format. It does not indicate where or how any interview took place. A caption under every phone says this. Names and usernames are anonymised. Profile pictures are placeholder images (cartoon, meme and illustration graphics chosen by the author), not photos of participants. They are stored in `src/avatars/`.
 
 ## Conventions
 
 - **No dates and no message timestamps.** The status-bar clock shows `9:41`, the standard device-mockup placeholder.
 - **No read receipts, reactions, emojis or typing indicators.**
 - **Interviewer lines are reconstructed (`I-recon`)**, except D_02's MCP explanation, which is documented in the notes (`I-doc`).
-- **`ack`** marks a connective acknowledgement such as "yeah that makes sense". It carries no research claim.
+- **`banter`** marks casual filler (greetings, "lol", "real", "fair fair", "yeah makes sense"). It carries no research claim and was added so the chats read as relaxed, Gen Z-style DMs.
+- **Tone:** all chats use a casual, lowercase Gen Z register at the author's request. Wording is reconstructed; research points are unchanged.
 - **Every participant line traces to a numbered note below.** The per-line mapping is in `src/conversations.js`, in each message's `src` field.
 
 ## Participant notes (from the brief)
