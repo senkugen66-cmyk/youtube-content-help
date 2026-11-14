@@ -1,0 +1,117 @@
+/* Plain "document" theme for the EditFlo report: same content, ordinary report styling. */
+html,body{background:#fff !important}
+body{font-family:Carlito,Calibri,Arial,sans-serif !important;font-size:11pt !important;line-height:1.38 !important;color:#111 !important;padding:0 22mm !important;-webkit-font-smoothing:auto}
+h1,h2,h3,h4,h5{font-family:Carlito,Calibri,Arial,sans-serif !important;letter-spacing:0 !important}
+p{margin:0 0 6pt}
+b,strong{font-weight:700}
+a{color:#4B1A7A}
+
+/* report openers */
+.r-head{border-bottom:0 !important;padding:0 !important;margin-bottom:4mm !important}
+.r-head h1{font-size:19pt !important;font-weight:700 !important;color:#4B1A7A !important;margin:1mm 0 2mm !important;line-height:1.15 !important}
+.r-head .lead{font-size:11pt !important;color:#333 !important;font-style:italic;max-width:none !important}
+.kicker{font-family:Carlito,Calibri,sans-serif !important;font-size:10pt !important;letter-spacing:0 !important;text-transform:none !important;color:#555 !important;font-weight:400 !important}
+h2{font-size:13.5pt !important;font-weight:700 !important;color:#4B1A7A !important;margin:6mm 0 2mm !important}
+h2 .n{color:#4B1A7A !important;margin-right:2mm !important}
+h3{font-size:11.5pt !important;font-weight:700 !important;color:#111 !important;margin:4mm 0 1mm !important}
+.small,.muted{color:#444 !important;font-size:10pt !important}
+ul,ol{padding-left:6mm !important}
+
+/* evidence labels become plain italic lead-ins */
+.lbl{font-family:inherit !important;font-size:inherit !important;letter-spacing:0 !important;text-transform:none !important;font-weight:700 !important;font-style:italic;background:none !important;border:0 !important;color:#111 !important;padding:0 !important;vertical-align:baseline !important;margin-right:2pt !important}
+.lbl::after{content:":"}
+table .lbl::after{content:""}
+.interp{background:none !important;border-radius:0 !important;padding:0 0 0 5mm !important;margin:1mm 0 3mm !important;font-size:10.5pt !important;color:#333 !important;font-style:italic}
+.interp .lbl{font-style:normal}
+.pt h3 .id{display:inline !important;background:none !important;color:#4B1A7A !important;width:auto !important;height:auto !important;border-radius:0 !important;font-size:inherit !important;margin-right:0 !important}
+.pt h3 .id::before{content:"Participant "}
+.pt h3 .id::after{content:" — "}
+
+/* callouts */
+.note,.limit{background:none !important;border:.6pt solid #999 !important;border-radius:0 !important;padding:2.5mm 3mm !important;font-size:10pt !important;color:#222 !important;box-shadow:none !important}
+.note h4{font-size:11pt !important}
+
+/* tables: thin grey lines, light header */
+table{border:.6pt solid #888 !important;border-radius:0 !important;background:#fff !important;font-size:10pt !important;line-height:1.3 !important;border-collapse:collapse !important}
+th{background:#EFE8F6 !important;color:#111 !important;font-weight:700 !important;font-size:10pt !important;border:.6pt solid #888 !important;padding:1.6mm 2mm !important}
+td{border:.6pt solid #bbb !important;padding:1.6mm 2mm !important}
+td.k{font-weight:700 !important}
+.st{background:none !important;border:0 !important;border-radius:0 !important;padding:0 !important;font-size:inherit !important;color:#111 !important;font-weight:400 !important}
+.st.sup{font-weight:700 !important}
+.st.new{font-style:italic}
+figure{margin:3mm 0 4mm !important}
+figcaption{font-size:9.5pt !important;color:#333 !important;font-style:italic}
+figcaption b{font-style:normal;color:#111 !important}
+
+/* Lean canvas: classic boxed grid */
+.canvas{gap:0 !important;font-size:9pt !important;line-height:1.28 !important}
+.cb{border:0 !important;outline:.7pt solid #333;border-radius:0 !important;box-shadow:none !important;background:#fff !important;padding:2mm !important}
+.cb.chg{box-shadow:none !important;background:#F4EEF9 !important}
+.cb.uvp{background:#fff !important}
+.cb.uvp.chg{background:#F4EEF9 !important}
+.cb h5{font-family:Carlito,Calibri,sans-serif !important;font-size:8.5pt !important;letter-spacing:.02em !important;color:#111 !important;font-weight:700 !important}
+.cb .chgtag{background:none !important;color:#4B1A7A !important;font-size:7.5pt !important;font-weight:400 !important;font-style:italic;letter-spacing:0 !important;padding:0 !important}
+.cb .chgtag::before{content:"("}.cb .chgtag::after{content:")"}
+.cb p{font-size:9.5pt !important}
+.cb .sub{border-top:.5pt dashed #999 !important;color:#333 !important}
+
+/* participant x theme matrix */
+.dot{width:2.6mm !important;height:2.6mm !important;background:#4B1A7A !important}
+.dot.o{background:none !important;border:0 !important}
+.dot.o::after{content:"–";color:#aaa;font-size:9pt;position:relative;top:-1.2mm}
+.cnt{font-weight:700 !important}
+
+/* hypothesis evolution */
+.hyp-col{border:.6pt solid #888 !important;border-radius:0 !important;background:#fff !important}
+.hyp-col h5{font-family:Carlito,sans-serif !important;font-size:9.5pt !important;text-transform:none !important;letter-spacing:0 !important;color:#4B1A7A !important}
+.hc{border:0 !important;border-bottom:.5pt solid #ddd !important;border-radius:0 !important;font-size:9pt !important;padding:1mm 0 !important}
+.hc b{color:#111 !important}
+
+/* workflow pain map */
+.flow{gap:0 !important;font-size:8.5pt !important}
+.stage{border:0 !important;outline:.6pt solid #888;border-radius:0 !important;background:#fff !important;min-height:28mm !important}
+.stage.focus{background:#F4EEF9 !important}
+.stage .t{font-size:8.8pt !important;color:#111 !important}
+.stage .ps span{background:none !important;color:#555 !important;width:auto !important;height:auto !important;font-size:8.5pt !important;font-weight:400 !important}
+.stage .ps span.r2{background:none !important;color:#4B1A7A !important;font-weight:700 !important}
+.stage .what{color:#444 !important;font-size:8pt !important}
+.focusbar{background:none !important;color:#4B1A7A !important;font-family:Carlito,sans-serif !important;font-size:9pt !important;text-transform:none !important;letter-spacing:0 !important;border-bottom:.8pt solid #4B1A7A;border-radius:0 !important}
+
+/* feature priorities */
+.prio{gap:0 !important}
+.prio .col{border:0 !important;outline:.6pt solid #888;border-radius:0 !important;background:#fff !important;color:#111 !important}
+.prio .col.core{background:#F4EEF9 !important;color:#111 !important}
+.prio .col h5{font-family:Carlito,sans-serif !important;font-size:11pt !important;color:#4B1A7A}
+.prio .col .why{opacity:1 !important;color:#444;font-size:8.8pt !important;font-style:italic}
+.prio .it,.prio .col:not(.core) .it{background:none !important;border-radius:0 !important;padding:1mm 0 !important;border-bottom:.5pt solid #ddd;font-size:9.5pt !important}
+.prio .it em{opacity:1 !important;color:#555;font-size:8.5pt !important}
+
+/* segment evolution */
+.seg .s{border:.6pt solid #888 !important;border-radius:0 !important;background:#fff !important;color:#111 !important}
+.seg .s.fin{background:#F4EEF9 !important;color:#111 !important;border-color:#4B1A7A !important}
+.seg .s h5{font-family:Carlito,sans-serif !important;font-size:9pt !important;text-transform:none !important;letter-spacing:0 !important;opacity:1 !important;color:#555}
+.seg .ar{color:#555 !important}
+
+/* images */
+.slide,.shot{border:.6pt solid #999 !important;border-radius:0 !important;box-shadow:none !important}
+.hw{border:.6pt solid #999 !important;border-radius:0 !important}
+img[src*="_chat_"]{border-radius:0 !important}
+
+/* video link: plain hyperlink */
+.video{background:none !important;color:#4B1A7A !important;padding:0 !important;border-radius:0 !important;font-size:12pt !important;text-decoration:underline}
+.video span{display:none !important}
+.url{font-family:Carlito,sans-serif !important;font-size:11pt !important}
+
+/* cover */
+.cover{padding-top:55mm !important;align-items:center;text-align:center}
+.cover .mark{width:16mm !important;height:16mm !important}
+.cover .kicker{margin-top:8mm !important;font-size:12pt !important}
+.cover h1{font-size:40pt !important;letter-spacing:0 !important;font-weight:700 !important;color:#111 !important;margin:4mm 0 2mm !important}
+.cover h1 span{color:#4B1A7A !important}
+.cover .tag{font-size:14pt !important;color:#333 !important;font-style:italic}
+.cover .desc{font-size:11pt !important;color:#333 !important;margin-left:auto;margin-right:auto}
+.cover table{margin:auto auto 0 !important;width:130mm !important;text-align:left}
+.toc{font-size:11pt !important}
+
+.cover .mark{display:none !important}
+.cover{padding-top:70mm !important}

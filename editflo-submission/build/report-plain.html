@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><title>25120989_EHT_FinalProject</title>
+<link rel="stylesheet" href="report.css">
+<style>
+.cover{height:262mm;display:flex;flex-direction:column;padding-top:20mm}
+.cover .mark{width:20mm;height:20mm}
+.cover h1{font-size:54pt;letter-spacing:-.045em;line-height:1;margin:9mm 0 3mm;font-weight:800}
+.cover h1 span{color:var(--p)}
+.cover .tag{font-size:16pt;color:var(--ink2);letter-spacing:-.01em}
+.cover .desc{font-size:11pt;color:var(--mut);max-width:125mm;margin-top:6mm}
+.cover table{margin-top:auto;width:120mm}
+.cover td{font-size:9pt;padding:2.6mm 3mm}
+.toc{width:100%;font-size:9.6pt}
+.toc td{padding:2.2mm 3mm}
+.toc .w{color:var(--mut);white-space:nowrap;width:18mm}
+.toc .pg{text-align:right;width:14mm;font-weight:600}
+.toc tr.sub td{font-size:8.6pt;color:var(--ink2);padding-top:1.2mm;padding-bottom:1.2mm}
+.toc tr.sub td:first-child{padding-left:8mm}
+.hyp-flow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm}
+.hyp-col{background:var(--card);border:1px solid var(--line);border-radius:6pt;padding:2.6mm}
+.hyp-col h5{margin:0 0 2mm;font-family:'JetBrains Mono',monospace;font-size:6.6pt;letter-spacing:.08em;text-transform:uppercase;color:var(--p)}
+.hc{border:1px solid #EFEAE3;border-radius:4pt;padding:1.5mm 2mm;margin-bottom:1.4mm;font-size:7.4pt;line-height:1.3;break-inside:avoid}
+.hc b{color:var(--p)}
+.hc .st{float:right;margin-left:2mm}
+.flow{display:grid;grid-template-columns:repeat(9,1fr);gap:1.2mm;font-size:7.2pt;position:relative}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:5pt;padding:2mm 1.6mm;min-height:31mm;text-align:center}
+.stage.focus{background:var(--tint2);border-color:var(--l)}
+.stage .t{font-weight:600;font-size:7.6pt;line-height:1.2;min-height:7mm;color:var(--ink)}
+.stage .ps{margin-top:1.6mm;display:flex;flex-wrap:wrap;gap:.8mm;justify-content:center}
+.stage .ps span{display:inline-grid;place-items:center;width:4.4mm;height:4.4mm;border-radius:50%;font-size:6.4pt;font-weight:700;background:var(--sunk);color:var(--ink2)}
+.stage .ps span.r2{background:var(--p);color:#fff}
+.stage .what{margin-top:1.6mm;color:var(--mut);font-size:6.6pt;line-height:1.25}
+.focusbar{grid-column:3/8;grid-row:1;align-self:start;margin-bottom:1mm;text-align:center;font-family:'JetBrains Mono',monospace;font-size:6.4pt;letter-spacing:.07em;text-transform:uppercase;color:#fff;background:var(--p);border-radius:3pt;padding:.8mm}
+.prio{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4mm}
+.prio .col{border-radius:6pt;padding:2.6mm;border:1px solid var(--line);background:var(--card)}
+.prio .col.core{background:var(--p);border-color:var(--p);color:#fff}
+.prio .col h5{margin:0 0 .6mm;font-size:9pt;font-family:'EF Inter';font-weight:600}
+.prio .col .why{font-size:7.2pt;margin-bottom:2mm;opacity:.8}
+.prio .it{background:rgba(255,255,255,.12);border-radius:4pt;padding:1.5mm 1.8mm;margin-bottom:1.4mm;font-size:7.6pt;line-height:1.3}
+.prio .col:not(.core) .it{background:var(--sunk)}
+.prio .it em{font-style:normal;display:block;font-size:6.8pt;opacity:.8;margin-top:.4mm}
+.seg{display:grid;grid-template-columns:1fr 6mm 1fr 6mm 1fr;align-items:stretch;font-size:8pt}
+.seg .s{border:1px solid var(--line);border-radius:6pt;padding:2.6mm;background:var(--card)}
+.seg .s.fin{background:var(--p);color:#fff;border-color:var(--p)}
+.seg .s h5{margin:0 0 1mm;font-family:'JetBrains Mono',monospace;font-size:6.4pt;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.seg .s b{display:block;font-size:9pt;margin-bottom:1mm}
+.seg .ar{display:grid;place-items:center;color:var(--p);font-size:12pt}
+.dots{letter-spacing:1.5pt;color:var(--p);font-size:10pt;white-space:nowrap}
+.dots i{font-style:normal;color:#DCD3E3}
+.hw{width:100%;border:1px solid var(--line);border-radius:4pt;display:block}
+.status-row td:nth-child(2){white-space:nowrap}
+</style><link rel="stylesheet" href="plain.css">
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<section class="cover">
+  <img class="mark" src="img/mark.png" alt="">
+  <div class="kicker" style="margin-top:12mm">Entrepreneurship · Individual final project</div>
+  <h1>Edit<span>Flo</span></h1>
+  <div class="tag">Create more. Edit less. Start publishing.</div>
+  <p class="desc">Reusable editing workflows that a creator’s own AI assistant runs inside their editing software, with the creator approving every result. From an initial idea to an incubation proposition, in five reports.</p>
+  <table>
+    <tr><td class="k">Roll number</td><td>25120989</td></tr>
+    <tr><td class="k">Submission</td><td>Final project: Reports 1–5 with appendices</td></tr>
+    <tr><td class="k">Video pitch</td><td><a href="https://www.youtube.com/watch?v=SlrPQ5JF8vY">youtube.com/watch?v=SlrPQ5JF8vY</a> (also in Report 4)</td></tr>
+    <tr><td class="k">Editable deck</td><td>Submitted with this PDF as 25120989_EditFlo_Pitch_Deck.pptx</td></tr>
+  </table>
+</section>
+
+<!-- ================= CONTENTS ================= -->
+<section class="report" id="contents">
+  <div class="r-head" style="border:0;margin-bottom:0"><div class="kicker">Contents</div><h1>Submission overview</h1></div>
+  <table class="toc">
+    <tr><th>Section</th><th>Weight</th><th style="text-align:right">Page</th></tr>
+    <tr><td><b>Report 1</b> · Initial idea, Lean Canvas 1 and hypotheses</td><td class="w">15%</td><td class="pg" data-toc="r1">–</td></tr>
+    <tr><td><b>Report 2</b> · First-round interviews, Lean Canvas 2 and hypothesis update</td><td class="w">20%</td><td class="pg" data-toc="r2">–</td></tr>
+    <tr><td><b>Report 3</b> · Second-round interviews, Lean Canvas 3 and insights analysis</td><td class="w">20%</td><td class="pg" data-toc="r3">–</td></tr>
+    <tr><td><b>Report 4</b> · Final incubation pitch: presentation and video pitch</td><td class="w">30%</td><td class="pg" data-toc="r4">–</td></tr>
+    <tr class="sub"><td>Pitch deck (13 slides)</td><td></td><td class="pg" data-toc="deck">–</td></tr>
+    <tr class="sub"><td>Video pitch</td><td></td><td class="pg" data-toc="video">–</td></tr>
+    <tr class="sub"><td>Product walkthrough, how EditFlo works, business model and validation</td><td></td><td class="pg" data-toc="r4b">–</td></tr>
+    <tr><td><b>Report 5</b> · Handwritten reflection</td><td class="w">15%</td><td class="pg" data-toc="r5">–</td></tr>
+    <tr><td><b>Appendix A</b> · Interview log, method and coding</td><td class="w"></td><td class="pg" data-toc="appa">–</td></tr>
+    <tr><td><b>Appendix B</b> · Interview evidence and screenshots</td><td class="w"></td><td class="pg" data-toc="appb">–</td></tr>
+  </table>
+  <h2>How to read the evidence in this document</h2>
+  <p>Customer discovery produces different kinds of statements. To keep them apart, each finding is labelled consistently:</p>
+  <table>
+    <tr><td style="width:30mm"><span class="lbl obs">Observed</span></td><td>What a participant described, as recorded in the researcher’s notes.</td></tr>
+    <tr><td><span class="lbl int">Interpretation</span></td><td>What that experience may mean for EditFlo. A judgement, not a fact.</td></tr>
+    <tr><td><span class="lbl hyp">Hypothesis</span></td><td>An assumption that still needs testing.</td></tr>
+    <tr><td><span class="lbl pro">Proposed</span></td><td>Something EditFlo intends to build or offer.</td></tr>
+    <tr><td><span class="lbl val">In prototype</span></td><td>Partly built by the founder, but not yet tested with pilot users. Nothing in this document is presented as a validated, deployed capability.</td></tr>
+  </table>
+  <div class="limit"><b>Research scope.</b> Five exploratory conversations (Participants A–E) and three follow-up conversations with returning participants A, B and D. This is qualitative research with a small convenience sample. Counts such as “4 of 5” describe how many of these participants raised a theme. They are not survey percentages and do not estimate market-wide prevalence.</div>
+  <div class="limit"><b>Naming.</b> Reports 1 and 2 use the original working name, <i>EditFlow</i>. It was refined to <i>EditFlo</i> in Report 3; the earlier name is kept where it reflects the record at the time.</div>
+</section>
+
+<!-- ================= REPORT 1 ================= -->
+<section class="report" id="r1">
+  <div class="r-head"><div class="kicker">Report 1 · 15%</div><h1>Initial business idea, Lean Canvas 1 and hypotheses</h1>
+    <p class="lead">Defines the original idea for EditFlow, the problem it was assumed to solve, and the assumptions to test before building anything.</p></div>
+
+  <h2><span class="n">1.1</span>Business idea</h2>
+  <p>EditFlow was proposed as a set of ready-to-use video-editing workflows built around the OpenFilm editing environment and MCP-based AI-assistant integrations. (MCP, the Model Context Protocol, is an open standard that lets an AI assistant connect to external tools. Report 4 explains the architecture.) The intended outcome was to help beginners move from an idea or raw footage to a finished video with less technical effort. The offering could include workflow packages, installation and configuration help, and optional support.</p>
+  <p>The product is not simply the sale of an MCP connection. It is a guided editing workflow intended to reduce the gap between wanting to publish and actually producing a video. Which steps can really be automated had to be tested against the tools available.</p>
+
+  <h2><span class="n">1.2</span>Problem hypothesis</h2>
+  <p>The initial problem hypothesis was that some aspiring creators postpone or avoid publishing because editing feels like a separate skill they must master. Three related barriers were proposed:</p>
+  <ul>
+    <li><b>Lack of editing skills.</b> Beginners may not know how to cut footage, add captions, arrange clips or produce a coherent video.</li>
+    <li><b>Fear of poor-quality output.</b> Creators may worry that their videos will look unprofessional next to established creators.</li>
+    <li><b>Time and effort.</b> Learning editing software and completing edits can be hard to fit around work, study or business.</li>
+  </ul>
+  <p>Current alternatives include online tutorials, basic mobile editing apps, templates, freelance editors, or not publishing at all. These were to be explored in interviews rather than assumed.</p>
+
+  <h2><span class="n">1.3</span>Customer segments and early adopters</h2>
+  <p>The initial segments were aspiring YouTubers, beginner short-form creators, working professionals building an online presence, and entrepreneurs or personal brands who want to publish without spending substantial time editing. The proposed <b>early adopters</b> were people who already have content ideas or raw footage but repeatedly delay publishing because of editing.</p>
+
+  <h2><span class="n">1.4</span>Lean Canvas 1</h2>
+  <figure id="lc1"></figure>
+
+  <h2><span class="n">1.5</span>Initial hypotheses</h2>
+  <p>Each hypothesis is linked to the canvas block it tests, with the kind of evidence that would support or weaken it. This set the evaluation rules used in Report 2.</p>
+  <table>
+    <tr><th style="width:9mm">ID</th><th>Hypothesis</th><th style="width:19mm">Canvas block</th><th>Would support it</th><th>Would weaken it</th></tr>
+    <tr><td class="k">H1</td><td>Aspiring creators hesitate to publish because they lack video-editing skills.</td><td>Problem</td><td>Beginners describe delaying or abandoning posts because they do not know how to edit.</td><td>Delays come from other causes, or experienced creators face the same barrier.</td></tr>
+    <tr><td class="k">H2</td><td>Beginners worry that their videos will look unprofessional.</td><td>Problem</td><td>Beginners describe comparing their work with established creators or holding back for quality reasons.</td><td>Quality pressure is absent, or found mainly among experienced creators.</td></tr>
+    <tr><td class="k">H3</td><td>Learning and performing editing takes too much time and effort.</td><td>Problem</td><td>Long editing times, fatigue or effort described as a burden.</td><td>Editing described as quick or manageable.</td></tr>
+    <tr><td class="k">H4</td><td>Editing difficulties prevent some beginners from publishing consistently.</td><td>Problem · Segments</td><td>Gaps or breaks in publishing attributed to editing.</td><td>Consistent publishing despite editing difficulty.</td></tr>
+    <tr><td class="k">H5</td><td>Some beginners are interested in AI-assisted tools that simplify editing.</td><td>Solution</td><td>Prior use of, or active interest in, AI editing tools.</td><td>No interest, or distrust of AI output.</td></tr>
+    <tr><td class="k">H6</td><td>A subset of potential customers may pay for ready-to-use editing workflows or setup support.</td><td>Revenue</td><td>Past spending on editing help, or a stated budget for tools.</td><td>No spending; strong preference for free tools.</td></tr>
+  </table>
+
+  <h2><span class="n">1.6</span>Validation plan</h2>
+  <p>The first validation round would use short, open-ended conversations with people who have created or considered creating online video. Questions would focus on past behaviour: whether they had tried creating videos, what difficulties they met, how they currently edit, how long editing takes, and whether editing had caused them to delay or abandon a post. EditFlow would not be pitched early, and participants would not simply be asked whether they liked the idea.</p>
+
+  <h2><span class="n">1.7</span>Conclusion</h2>
+  <p>EditFlow began as a hypothesis about the gap between wanting to publish video content and having the skills, confidence and time to edit it. The next step was not to assume the solution was needed, but to test how often these problems occur, which segment feels them most, and whether existing alternatives are inadequate.</p>
+</section>
+
+<!-- ================= REPORT 2 ================= -->
+<section class="report" id="r2">
+  <div class="r-head"><div class="kicker">Report 2 · 20%</div><h1>First-round interviews, Lean Canvas 2 and hypothesis update</h1>
+    <p class="lead">Five exploratory conversations tested the Report 1 hypotheses. The main finding: the problem is not limited to beginners who lack skills. Experienced creators also struggle with the effort of production.</p></div>
+
+  <h2><span class="n">2.1</span>Research approach</h2>
+  <p>Five informal customer-discovery conversations were held with people at different levels of content-creation and editing experience, recruited from the researcher’s own contacts. The topics followed the Report 1 validation plan and focused on past behaviour. Participants are anonymised as A–E. The records are concise notes written from the researcher’s recollection of each conversation; they are not verbatim transcripts.</p>
+  <table>
+    <tr><th style="width:9mm">ID</th><th>Profile</th><th>Relevant experience</th><th style="width:24mm">Method</th></tr>
+    <tr><td class="k">A</td><td>Former Instagram page operator and long-form creator</td><td>Ran a motivational and sportsmanship-themed page and made longer storytelling videos; previously paid for editing help.</td><td>Text conversation</td></tr>
+    <tr><td class="k">B</td><td>Third-year MBBS student and experienced editor</td><td>Previously freelanced; edits independently at an advanced level; has tried AI editing tools.</td><td>Text conversation</td></tr>
+    <tr><td class="k">C</td><td>Former YouTuber and gym-content creator</td><td>Made fitness videos, generally edited on a phone; limited by equipment and workload.</td><td>In person</td></tr>
+    <tr><td class="k">D</td><td>Full-time performance-marketing educator</td><td>Publishes weekly educational videos on Meta advertising, campaigns and platform updates.</td><td>Phone</td></tr>
+    <tr><td class="k">E</td><td>Aspiring short-form creator</td><td>Uses CapCut; reported a first video with about 3.4 million views; experiments with styles.</td><td>Phone</td></tr>
+  </table>
+  <div class="limit"><b>Limitation.</b> This is a small convenience sample. The findings are exploratory and cannot be generalised to all creators. The phone and in-person conversations were not recorded. For the text conversations with A and B, screenshots are reproduced in Appendix B; elsewhere, exact quotations are not presented.</div>
+
+  <h2><span class="n">2.2</span>Interview findings</h2>
+  <div class="pt"><h3><span class="id">A</span>Former Instagram page operator and long-form creator</h3>
+    <p><span class="lbl obs">Observed</span>He ran an Instagram page of motivational, sportsmanship and everyday-life content and also made longer storytelling videos. Academic commitments and later mental fatigue made it hard to keep posting, and he is currently on a break. A single short took about 1–1.5 hours to edit, most of it spent going through footage and picking what was usable. He had hired an editor at about ₹1,500 per post but found the cost too high. Editing alone was time-consuming, he lacked a suitable PC, and subscription costs were a concern. He named finding A-roll and B-roll, choosing music and sound effects, trimming, removing pauses and filler words, and building a coherent timeline as frustrating tasks.</p>
+    <div class="interp"><span class="lbl int">Interpretation</span>He has spent money to solve an editing problem, but that does not show willingness to pay for EditFlow. Editing time, affordability, equipment and footage selection are his barriers.</div></div>
+  <div class="pt"><h3><span class="id">B</span>Experienced freelance editor and MBBS student</h3>
+    <p><span class="lbl obs">Observed</span>He has professional-level editing experience and previously freelanced, but medical studies now limit his time. He described a perfectionist approach, comparing alternatives and considering the audience before finalising. He estimated about 30 minutes of work per finished minute for short-form video and about 10–15 minutes per finished minute for long-form. He has tried AI tools but found token-based pricing potentially expensive, with bugs and inconsistent visual output. He would value an assistant-editor-like system that finds relevant footage, aligns it with the intended objective and timeline, and reduces repetitive trimming.</p>
+    <div class="interp"><span class="lbl int">Interpretation</span>Editing difficulty is not limited to beginners. An experienced editor may value help with repetitive work, as long as creative control and output consistency are preserved.</div></div>
+  <div class="pt"><h3><span class="id">C</span>Former YouTuber and gym-content creator</h3>
+    <p><span class="lbl obs">Observed</span>He made YouTube and gym videos and generally edited on a phone because he had no suitable laptop. Work, studies and moving city made it hard to continue. He described mental fatigue and pressure to produce high-quality videos. He sometimes filmed several angles but used only a small proportion of the footage. He wanted help that understands his creative vision, helps plan a storyboard and identifies useful footage.</p>
+    <div class="interp"><span class="lbl int">Interpretation</span>The production problem may begin before editing: shot planning, choosing useful angles and understanding the intended story also matter.</div></div>
+  <div class="pt"><h3><span class="id">D</span>Full-time performance-marketing educator</h3>
+    <p><span class="lbl obs">Observed</span>He is a full-time creator publishing educational videos on performance marketing, Meta advertising and platform updates, roughly weekly, with students asking for more. His difficulty is not balancing content with another job. It is mental fatigue from handling ideation, planning, recording, reviewing unsuccessful takes, selecting usable footage, editing and publishing himself. He wants something closer to a director: evaluating ideas, supporting SEO-oriented planning, finding relevant B-roll and improving sound quality. He finds it hard to be both strategist and executor of every task.</p>
+    <div class="interp"><span class="lbl int">Interpretation</span>Even full-time creators hit production bottlenecks because they hold several demanding roles at once. Planning and editing help may be complementary needs.</div></div>
+  <div class="pt"><h3><span class="id">E</span>Aspiring short-form creator</h3>
+    <p><span class="lbl obs">Observed</span>He uses CapCut and describes his editing skills as moderate. His first video reportedly received about 3.4 million views; since then he has struggled to feel satisfied with videos that do not perform similarly, and sometimes deletes underperforming ones. He spends time copying the editing approaches of popular YouTubers and combining styles, and feels that reaching the quality he wants takes too much effort. He would like a tool that helps him make polished videos more easily.</p>
+    <div class="interp"><span class="lbl int">Interpretation</span>His expectations may be shaped by the unusual reach of his first video. His belief that editing quality determines views is a perception, not a verified explanation.</div></div>
+
+  <h2><span class="n">2.3</span>Pain points across participants</h2>
+  <figure id="mx1"></figure>
+  <h3>Cross-interview analysis</h3>
+  <ul>
+    <li><b>Time and mental effort</b> were described by all five, for different reasons: study or work commitments, perfectionism, repetitive editing decisions, or managing the whole production process.</li>
+    <li><b>Footage selection and organisation</b> came up with A, B, C and D. It is a promising area for further validation.</li>
+    <li><b>Creative direction</b> mattered to B, C and D, who wanted help that follows a creative objective. Quality pressure appeared with B, C, D and E.</li>
+    <li><b>Needs differ by experience.</b> Beginners may need guidance, while experienced and full-time creators want help with repetitive tasks, footage selection and planning. One message may not serve every segment.</li>
+  </ul>
+
+  <h2><span class="n">2.4</span>Evaluation of the initial hypotheses</h2>
+  <p class="small">“Supported” means the interview accounts gave relevant evidence, judged against the criteria in section 1.5. It does not mean statistically proven.</p>
+  <table>
+    <tr><th style="width:44mm">Hypothesis</th><th style="width:25mm">Assessment</th><th>Evidence</th></tr>
+    <tr><td><b>H1</b> Aspiring creators hesitate because they lack editing skills</td><td><span class="st part">Partially supported</span></td><td>A and C described limits in equipment or editing capability. B and D show the problem also affects people who can edit well.</td></tr>
+    <tr><td><b>H2</b> Beginners worry their videos will look unprofessional</td><td><span class="st part">Partially supported</span></td><td>Quality pressure was common (B, C, D, E), but mostly among experienced creators. Only E is a beginner, so the hypothesis was framed too narrowly around beginners.</td></tr>
+    <tr><td><b>H3</b> Editing takes too much time and effort</td><td><span class="st sup">Supported</span></td><td>All five described editing or the wider production process as demanding, time-consuming or tiring.</td></tr>
+    <tr><td><b>H4</b> Editing difficulty prevents consistent publishing</td><td><span class="st part">Partially supported</span></td><td>A is on a break and C struggled to keep producing. D keeps publishing weekly despite fatigue, so the effect varies.</td></tr>
+    <tr><td><b>H5</b> Beginners are interested in AI-assisted editing tools</td><td><span class="st inc">Inconclusive</span></td><td>B has tried AI tools but reported limitations. Others described the help they want but did not confirm adopting an AI tool.</td></tr>
+    <tr><td><b>H6</b> Some customers may pay for workflows or setup support</td><td><span class="st inc">Inconclusive</span></td><td>A hired an editor at about ₹1,500 per post but found it too expensive. That shows spending on editing, not willingness to pay for EditFlow.</td></tr>
+  </table>
+
+  <h2><span class="n">2.5</span>New hypotheses for Report 3</h2>
+  <p>The interviews suggest the original problem statement focused too narrowly on beginners who lack skills. Planning, footage selection, creative decisions and repetitive editing create effort for beginners and experienced creators alike. Five new hypotheses were generated:</p>
+  <table>
+    <tr><td class="k" style="width:11mm">H7</td><td>Creators value intelligent footage selection and organisation.</td></tr>
+    <tr><td class="k">H8</td><td>Creators want an assistant that understands and follows their creative direction.</td></tr>
+    <tr><td class="k">H9</td><td>Pre-production help, including storyboarding and shot planning, reduces production effort.</td></tr>
+    <tr><td class="k">H10</td><td>Experienced and full-time creators value AI assistance even when they already have editing skills.</td></tr>
+    <tr><td class="k">H11</td><td>Some educational creators value content research and SEO help alongside editing.</td></tr>
+  </table>
+
+  <h2 class="brk"><span class="n">2.6</span>Lean Canvas 2</h2>
+  <p>Blocks outlined in purple changed after the first round.</p>
+  <figure id="lc2"></figure>
+
+  <h2><span class="n">2.7</span>Conclusion and next steps</h2>
+  <p>The first round suggests the problem extends beyond a lack of editing skills. Participants described the mental and practical burden of the full production process, from planning to quality decisions. This supports investigating an assistant-editor approach, but it does not yet establish demand for a specific AI product or willingness to pay.</p>
+  <p>The second round would test which tasks creators would trust an assistant with, what level of control they need, and whether any segment would pay. The technical feasibility of OpenFilm and MCP workflows also had to be checked before making product claims.</p>
+</section>
+
+<!-- ================= REPORT 3 ================= -->
+<section class="report" id="r3">
+  <div class="r-head"><div class="kicker">Report 3 · 20%</div><h1>Second-round interviews, Lean Canvas 3 and insights analysis</h1>
+    <p class="lead">Follow-up conversations with A, B and D narrowed EditFlo from a broad “AI content director” to an editing-focused assistant that does repetitive work, follows instructions and leaves the creator in control. The working name became <b>EditFlo</b>.</p></div>
+
+  <h2><span class="n">3.1</span>Research approach</h2>
+  <p>Participants A, B and D were re-interviewed to go deeper into their first-round accounts. These are follow-ups, not three new customers: the study still has five unique participants. C and E were not re-interviewed in this round. The conversations focused on which editing tasks participants would delegate, how much control they would require, and what they expect in cost and usefulness. As before, the records are summaries written from recollection, not verbatim transcripts.</p>
+
+  <h2><span class="n">3.2</span>Follow-up findings</h2>
+  <div class="pt"><h3><span class="id">B</span>Experienced editor</h3>
+    <p><span class="lbl obs">Observed</span>Much of his editing time goes on finding suitable templates and 3D assets (including Blender assets) and combining videos, photos, memes and overlays. Cutting and trimming are the tasks he would most like to eliminate. He judges footage against each project’s objective and noted that non-essential footage sometimes stays in. Asked whether he would use an automatic editing bot, he said “it depends. the final edit stays with me” and “what i need changes every project”. He was sceptical that AI could adapt to that, but said “if it adapts im all for it”, so an assistant would need to adapt to the style of each project. He would welcome suggested B-roll “if it matches my style”. He currently uses AI tools for video generation (Seedance and Google Flow). Storyboarding could help, but he already uses ChatGPT for ideation and planning and prefers an editing-focused assistant. He pays for Adobe Creative Cloud. On how an editing assistant should work, he asked for a simpler interface and low cost: “subscription is fine but token stuff is a straight no for me”.</p>
+    <div class="interp"><span class="lbl int">Interpretation</span>Experienced editors may value automation of repetitive editing and asset handling if they keep control and the style fits each project. Predictable, low pricing matters: B accepted a subscription but rejected token-based pricing outright. Stated interest is not a purchase commitment.</div></div>
+  <div class="pt"><h3><span class="id">A</span>Former long-form creator</h3>
+    <p><span class="lbl obs">Observed</span>He described the effort of editing long-form video while keeping important information and viewer engagement. Trimming takes much of the time, because only selected parts of a long recording are needed; for short reels he trims roughly every 15 seconds to keep retention. How selective he is depends on how much footage he has: with little, he uses more of it; with plenty, he can be choosier. The final video must keep the important speaking sections and key points. He is comfortable with substantial AI editing help and does not need AI-generated B-roll or separate planning support.</p>
+    <div class="interp"><span class="lbl int">Interpretation</span>Editing help must respect the creator’s content priorities and the amount of source footage. It must not remove important explanations just to shorten a video.</div></div>
+  <div class="pt"><h3><span class="id">D</span>Full-time creator, including sponsored content</h3>
+    <p><span class="lbl obs">Observed</span>Alongside his educational videos, he regularly produces sponsored content, often from scripts and product-presentation instructions supplied by companies. Because this content is scripted, he can give the footage, script and his own instructions to guide the edit. Different sponsors and concepts call for different visual styles, so he would expect a workflow to adapt its treatment to each project. He would most like to delegate B-roll insertion and repetitive editing. He is comfortable with AI trimming that follows his instructions, but wants to restore a section manually if it is shortened or removed. He questioned whether generating several alternative clips would waste processing time and token costs, and said he would pay only if the workflow produces useful results.</p>
+    <div class="interp"><span class="lbl int">Interpretation</span>Scripted, recurring content suits instruction-led editing. Protected time ranges and creator instructions must be respected, with manual correction always available.</div></div>
+
+  <h2><span class="n">3.3</span>What became clearer</h2>
+  <table>
+    <tr><th style="width:52mm">Assumption before the second round</th><th>What the follow-ups showed</th><th style="width:16mm">Source</th></tr>
+    <tr><td>The core problem is a lack of editing skill.</td><td>For creators who can edit, the burden is <b>repetitive execution</b>: trimming, cutting, organising footage and inserting assets.</td><td>A, B, D</td></tr>
+    <tr><td>EditFlo could be a broad AI “content director” covering ideation, storyboards, SEO and editing.</td><td>Planning and SEO are <b>not core</b>. B already uses ChatGPT for planning; A and D did not identify planning as essential.</td><td>A, B, D</td></tr>
+    <tr><td>AI should automate as much as possible.</td><td>AI should <b>follow instructions and be correctable</b>. The acceptable level of autonomy differs by person.</td><td>A, B, D</td></tr>
+    <tr><td>One editing approach fits all projects.</td><td>The <b>visual style must adapt</b> to each video’s concept.</td><td>B, D</td></tr>
+    <tr><td>B-roll is part of every workflow.</td><td>B-roll is <b>optional</b>: wanted by B and D, not by A.</td><td>A, B, D</td></tr>
+    <tr><td>Pricing structure was open.</td><td>Cost must be <b>predictable</b>; token-based or wasteful processing is a barrier.</td><td>B, D</td></tr>
+  </table>
+
+  <h2><span class="n">3.4</span>Theme comparison: first round vs follow-ups</h2>
+  <p>The same three people (A, B, D) were asked about their priorities in both rounds. The comparison shows how the focus moved from the whole production process to editing execution.</p>
+  <figure id="cmp"></figure>
+
+  <h2><span class="n">3.5</span>Where the pain sits, and where EditFlo focuses</h2>
+  <figure id="flow"></figure>
+
+  <h2><span class="n">3.6</span>Hypothesis evaluation</h2>
+  <table>
+    <tr><th style="width:52mm">Hypothesis</th><th style="width:25mm">Assessment</th><th>Evidence</th></tr>
+    <tr><td><b>H7</b> Creators value footage selection and organisation</td><td><span class="st part">Partially supported</span></td><td>A and B described footage-selection needs; D prioritised B-roll insertion. Requirements differ by project.</td></tr>
+    <tr><td><b>H8</b> Creators want an assistant that follows their creative direction</td><td><span class="st sup">Supported</span></td><td>B and D stressed instructions, creative intent and project style; A prioritised keeping key information.</td></tr>
+    <tr><td><b>H9</b> Pre-production help reduces effort</td><td><span class="st low">Lower priority</span></td><td>B saw storyboarding as possibly useful but not needed in an editing product; A and D did not see it as essential.</td></tr>
+    <tr><td><b>H10</b> Experienced creators value AI editing assistance</td><td><span class="st sup">Supported</span></td><td>B and D named specific tasks they would delegate; A wants substantial editing help.</td></tr>
+    <tr><td><b>H11</b> Creators value SEO and research alongside editing</td><td><span class="st inc">Inconclusive</span></td><td>Not established as a priority for the product in the follow-ups.</td></tr>
+  </table>
+  <p>Three new hypotheses were generated for the pilot proposed in Report 4. They are untested.</p>
+  <table>
+    <tr><td class="k" style="width:11mm">H12</td><td>Creators prefer predictable pricing (one-time or a flat monthly fee) to usage-based pricing.</td><td style="width:22mm"><span class="st new">To test</span></td></tr>
+    <tr><td class="k">H13</td><td>Instruction-led trimming with protected sections produces a rough cut that creators accept with limited corrections.</td><td><span class="st new">To test</span></td></tr>
+    <tr><td class="k">H14</td><td>Regular creators of recurring formats (educational, personal-brand, sponsored) are the most responsive early segment.</td><td><span class="st new">To test</span></td></tr>
+  </table>
+  <figure id="hypflow"></figure>
+
+  <h2><span class="n">3.7</span>Qualitative relationships</h2>
+  <ol style="padding-left:5mm;margin:0 0 7pt">
+    <li><b>Repetitive work drives the time pressure.</b> All five first-round participants described effort, time pressure or fatigue. The follow-ups traced much of it to editing execution: trimming, asset handling and footage review.</li>
+    <li><b>More AI autonomy needs stronger safeguards.</b> A, B and D wanted different levels of autonomy, but all three wanted key content preserved and the ability to review or correct.</li>
+    <li><b>Some needs are project-specific.</b> B-roll and visual style matter for some projects and not others, which argues for optional, configurable features rather than one fixed workflow.</li>
+  </ol>
+  <p class="small">These are patterns in a small sample, not causal correlations.</p>
+
+  <h2><span class="n">3.8</span>Feature priorities</h2>
+  <figure id="prio"></figure>
+
+  <h2><span class="n">3.9</span>How the target customer evolved</h2>
+  <figure>
+    <div class="seg">
+      <div class="s"><h5>Report 1</h5><b>Beginners and aspiring creators</b>People who want to publish but lack editing skills, confidence or time.</div>
+      <div class="ar">→</div>
+      <div class="s"><h5>Report 2</h5><b>Broad: five segments</b>Aspiring, short-form, educational, experienced editors and full-time creators. Early adopter not yet chosen.</div>
+      <div class="ar">→</div>
+      <div class="s fin"><h5>Report 3</h5><b>Regular creators who already edit</b>People publishing recurring formats (educational, personal-brand, sponsored) who lose time to repetitive editing.</div>
+    </div>
+    <figcaption><b>Why this segment.</b> Recurring formats make a workflow reusable. The strongest observed fit is D (weekly educational and scripted sponsored content); B and A fit partly. Because the segment rests on few participants, it is carried forward as hypothesis H14.</figcaption>
+  </figure>
+
+  <h2><span class="n">3.10</span>Product direction and business model</h2>
+  <p>The second round supports narrowing EditFlo to an <b>instruction-led editing workflow</b>. The core is repetitive editing execution: trimming and cutting, organising footage, preserving specified sections, adapting to each project’s style, and optional B-roll, always with creator review. Storyboarding, SEO and ideation are not core at this stage.</p>
+  <p><span class="lbl pro">Proposed</span>EditFlo is a hybrid product. The customer receives a <b>downloadable workflow repository</b>, which they set up once with their own compatible AI assistant and editing environment, plus access to a <b>web library</b> to browse, save and configure workflows. Installation, configuration and support can be offered separately. Because B and D rejected unpredictable, token-based costs, pricing should be flat and predictable. Two such options are carried into Report 4 for testing: a one-time purchase and a low-commitment monthly plan. Either way, customers still pay separately for their own AI assistant and software.</p>
+
+  <h2 class="brk"><span class="n">3.11</span>Lean Canvas 3</h2>
+  <p>Blocks outlined in purple changed after the second round.</p>
+  <figure id="lc3"></figure>
+
+  <h2><span class="n">3.12</span>Conclusion</h2>
+  <p>The second round strengthened the case for an editing-focused product. Returning participants named tasks they would delegate (trimming, footage organisation, B-roll insertion) and stressed creator intent, project style, configurable AI autonomy and predictable cost. The next stage is to check the technical reliability of the workflow on real footage, measure time saved, and obtain evidence of use or payment. Product-market fit is not yet proven.</p>
+</section>
+
+<!-- ================= REPORT 4 ================= -->
+<section class="report" id="r4">
+  <div class="r-head"><div class="kicker">Report 4 · 30%</div><h1>Final incubation pitch</h1>
+    <p class="lead">EditFlo seeks incubation support to run a structured pilot with regular creators. This report contains the pitch presentation, the video pitch, and supporting detail on the product, technology, business model and validation plan.</p></div>
+  <div class="cols" style="margin-bottom:4mm">
+    <div class="note"><h4>1 · Pitch presentation</h4>13 slides, reproduced on the following pages. The editable file is submitted as <b>25120989_EditFlo_Pitch_Deck.pptx</b>.</div>
+    <div class="note"><h4>2 · Video pitch</h4>The founder presenting EditFlo. The link is below and on the page after the slides.</div>
+  </div>
+  <a class="video" href="https://www.youtube.com/watch?v=SlrPQ5JF8vY">▶  Watch the EditFlo video pitch on YouTube<span>Opens youtube.com in your browser</span></a>
+  <p class="url">https://www.youtube.com/watch?v=SlrPQ5JF8vY</p>
+  <h2 id="deck"><span class="n">4.1</span>Pitch presentation</h2>
+  <div class="slides2" id="slidesA"></div>
+</section>
+<div id="slidesRest"></div>
+
+<section class="page-break" id="video">
+  <h2 style="margin-top:0"><span class="n">4.2</span>Video pitch</h2>
+  <p>The video pitch presents the founder, the problem, the product and the pricing test, using the same evidence and visual identity as the presentation.</p>
+  <a class="video" href="https://www.youtube.com/watch?v=SlrPQ5JF8vY">▶  Watch the EditFlo video pitch on YouTube<span>Opens youtube.com in your browser</span></a>
+  <p class="url">Alternative link (copy and paste): https://www.youtube.com/watch?v=SlrPQ5JF8vY</p>
+
+  <h2 id="r4b"><span class="n">4.3</span>Product walkthrough</h2>
+  <p>The three screens below are a <b>conceptual prototype</b>: high-fidelity designs of the proposed web library, not deployed software. Each one connects to a finding from customer discovery.</p>
+  <figure><img class="shot" src="img/01-dashboard.jpg" alt="EditFlo overview dashboard">
+    <figcaption><b>Screen 1 · Overview.</b> Finding a reusable workflow is the primary action: creators search by the editing task they repeat (“remove pauses”, “organise raw footage”) and start from a workflow, not a blank timeline. <i>Addresses:</i> repetitive execution (A, B, D) and time pressure (all five). <i>Status:</i> conceptual design. Saved workflows are illustrative examples.</figcaption></figure>
+</section>
+<section class="page-break">
+  <figure style="margin-top:0"><img class="shot" src="img/02-workflow-detail.jpg" alt="YouTube long-form workflow detail">
+    <figcaption><b>Screen 2 · Workflow detail.</b> A six-stage YouTube long-form workflow. Only stage 04 is AI-assisted; it produces a proposed rough cut, never a final edit. Every stage has a review point. The Creator control panel holds protected sections (“Always keep”), a visual style for each project and optional B-roll, which is off by default. <i>Addresses:</i> configurable control and protecting key content (A, B, D), style per project and optional B-roll (B, D). <i>Status:</i> conceptual design.</figcaption></figure>
+  <figure><img class="shot" src="img/03-integrations.jpg" alt="EditFlo integrations and architecture">
+    <figcaption><b>Screen 3 · Integrations.</b> The proposed architecture and the status of each component, distinguishing what is in prototype from what is concept. No official partnership is implied; product names identify compatible tools only. <i>Status:</i> statuses are the founder’s assessment.</figcaption></figure>
+</section>
+
+<section class="page-break">
+  <h2 style="margin-top:0"><span class="n">4.4</span>How EditFlo works</h2>
+  <h3>In plain terms</h3>
+  <p>EditFlo is the recipe, the AI assistant is the cook, and the editing software is the kitchen. The creator chooses the recipe, says what must not change, and tastes the result before it is served.</p>
+  <h3>Step by step</h3>
+  <table>
+    <tr><th style="width:8mm">#</th><th style="width:34mm">Component</th><th>What happens</th></tr>
+    <tr><td class="k">1</td><td><b>EditFlo</b><br><span class="small">workflow repository + web library</span></td><td>The creator picks a workflow (for example, YouTube long-form) and sets the objective, visual style, protected sections and whether B-roll is wanted.</td></tr>
+    <tr><td class="k">2</td><td><b>MCP</b><br><span class="small">Model Context Protocol</span></td><td>An open standard that lets AI assistants connect to external tools. EditFlo uses it to give the workflow’s instructions to the creator’s AI assistant in a structured form.</td></tr>
+    <tr><td class="k">3</td><td><b>Compatible AI assistant</b></td><td>The creator’s own MCP-compatible assistant follows the instructions for the AI-assisted stage, such as trimming pauses and assembling a rough cut. The creator pays for this assistant separately.</td></tr>
+    <tr><td class="k">4</td><td><b>OpenFilm</b><br><span class="small">editing environment</span></td><td>The video-editing environment EditFlo’s workflows are designed around. The proposed edits are applied here. Support for other editors is a later concept.</td></tr>
+    <tr><td class="k">5</td><td><b>Creator review</b></td><td>The creator compares the proposed cut with their selections and accepts, adjusts or undoes each change. Nothing is finalised without approval.</td></tr>
+  </table>
+  <h3>Current status of each component</h3>
+  <table class="status-row">
+    <tr><th>Component</th><th>Status</th><th>What this means</th></tr>
+    <tr><td>Workflow repository (workflow files)</td><td><span class="st sup">In prototype</span></td><td>Partly built by the founder. Not yet tested in a structured pilot. No demonstration is attached to this submission.</td></tr>
+    <tr><td>EditFlo MCP connection</td><td><span class="st sup">In prototype</span></td><td>Partly built, as above.</td></tr>
+    <tr><td>MCP-compatible AI assistants (for example, Claude or Codex)</td><td><span class="st part">Exploring</span></td><td>Compatibility is being explored. No official partnership.</td></tr>
+    <tr><td>Web library (the screens in 4.3)</td><td><span class="st inc">Concept</span></td><td>High-fidelity design only.</td></tr>
+    <tr><td>OpenFilm integration, other editors, footage sources</td><td><span class="st inc">Concept</span></td><td>Proposed; requires technical validation.</td></tr>
+  </table>
+  <div class="limit"><b>Feasibility is the first thing the pilot must prove.</b> The key technical questions are whether AI-assisted trimming reliably keeps protected sections, how much setup each creator needs, and how much AI usage a typical workflow consumes.</div>
+</section>
+
+<section class="page-break">
+  <h2 style="margin-top:0"><span class="n">4.5</span>Business model in detail</h2>
+  <table>
+    <tr><th style="width:40mm">Element</th><th>Proposal</th></tr>
+    <tr><td class="k">What the customer gets</td><td>A downloadable workflow repository, set up once with their own AI assistant and editor, plus access to the web library to browse, save and configure workflows.</td></tr>
+    <tr><td class="k">Pricing test</td><td><b>₹3,000 one-time</b> (for creators who prefer a single payment) vs <b>₹500 per month</b> (a lower-commitment way to start). Both are hypotheses to be tested in the pilot (H12).</td></tr>
+    <tr><td class="k">Optional add-ons</td><td>Installation and configuration; technical support.</td></tr>
+    <tr><td class="k">Customer’s other costs</td><td>Their own compatible AI assistant and editing software, paid separately. EditFlo must state these requirements clearly before purchase.</td></tr>
+    <tr><td class="k">Cost structure</td><td>Workflow development and maintenance, compatibility testing, documentation, web library hosting, customer support and marketing.</td></tr>
+    <tr><td class="k">Channels</td><td>Creator and editor communities, before-and-after demonstrations on YouTube and Instagram, direct outreach to regular creators, and referrals from pilot users.</td></tr>
+  </table>
+  <h3>Pricing rationale and what is still unvalidated</h3>
+  <p>The pricing responds to the clearest commercial signal in the interviews: B and D rejected unpredictable, token-based costs. A flat price makes EditFlo’s cost easy to judge. As a reference point only, Participant A paid about ₹1,500 per post for an editor and found it too expensive. That is one person’s experience, and EditFlo does not replace an editor.</p>
+  <p><span class="lbl hyp">Hypothesis</span>Still unvalidated: which option creators choose; what the one-time price includes (update period, support duration, what happens if compatible tools change); and the total cost to the creator once AI usage is added.</p>
+
+  <h2><span class="n">4.6</span>Competitive position</h2>
+  <p>Creators can edit manually, hire freelancers, use general-purpose AI tools, or rely on features in their editing software. EditFlo’s intended difference is <b>repeatable, instruction-led workflows with protected sections and review checkpoints</b>, built for creators who edit the same kind of video again and again (slide 9). This is a hypothesis. It must be tested side by side against the alternatives on the same tasks, including the built-in automation of mainstream editing tools, which this project has not yet researched.</p>
+
+  <h2><span class="n">4.7</span>Validation plan</h2>
+  <p>A small pilot with regular creators using their own projects. Each participant provides raw footage, editing instructions and the sections or visual references that must be preserved.</p>
+  <table>
+    <tr><th style="width:30mm">Measure</th><th>What to record</th><th>Why it matters</th></tr>
+    <tr><td class="k">Setup</td><td>Installation success, setup time and compatibility issues.</td><td>Tests whether the workflow is practical to adopt.</td></tr>
+    <tr><td class="k">Editing effort</td><td>Usual editing time vs assisted editing time; repetitive steps completed.</td><td>Tests whether the workflow reduces repetitive work.</td></tr>
+    <tr><td class="k">Creator control</td><td>Protected sections retained; corrections made; edits accepted.</td><td>Checks that the output respects creator intent (H13).</td></tr>
+    <tr><td class="k">Output quality</td><td>Creator satisfaction, rework and final approval.</td><td>Checks usefulness, not simply the amount of automation.</td></tr>
+    <tr><td class="k">Commercial</td><td>Purchases or deposits; choice between ₹3,000 one-time and ₹500 monthly.</td><td>Separates stated interest from willingness to pay (H12).</td></tr>
+    <tr><td class="k">Segment</td><td>Which creator types complete the pilot and continue using it.</td><td>Tests the beachhead segment (H14).</td></tr>
+  </table>
+
+  <h2><span class="n">4.8</span>Incubation support requested and conclusion</h2>
+  <p>EditFlo requests support in four areas: <b>technical mentorship</b> on MCP and editing-environment integration; <b>access to pilot creators</b> producing recurring formats; <b>AI usage credits</b> so that pilot edits do not pass token costs to participants; and <b>business guidance</b> on pricing, workflow licensing and go-to-market.</p>
+  <p>EditFlo addresses a practical problem found in customer discovery: creators can have the ideas and the skills, yet lack the time and energy for repetitive editing. Its opportunity is to become a reliable assistant-editor workflow that follows instructions, adapts to each project and keeps the creator in control. The early signals are promising. Commercial potential depends on technical reliability, measurable time savings and proven willingness to pay, which is what the pilot is designed to test.</p>
+</section>
+
+<!-- ================= REPORT 5 ================= -->
+<section class="report" id="r5">
+  <div class="r-head"><div class="kicker">Report 5 · 15%</div><h1>Reflections and learning</h1>
+    <p class="lead">Submitted as a handwritten personal reflection, as the assignment requires. A typed transcription follows the handwritten pages for legibility; it reproduces the handwritten text without additions.</p></div>
+  <img class="hw" src="img/hw-000.jpg" alt="Handwritten reflection, page 1" style="max-height:205mm;width:auto;margin:0 auto">
+</section>
+<section class="page-break">
+  <img class="hw" src="img/hw-001.jpg" alt="Handwritten reflection, page 2" style="max-height:236mm;width:auto;margin:0 auto">
+</section>
+<section class="page-break">
+  <h2 style="margin-top:0">Typed transcription of the handwritten reflection</h2>
+  <p class="small">Report 5 · Reflections and learning · Project: EditFlo · Roll No. 25120989</p>
+  <h3>1. My experience</h3>
+  <p>Working on EditFlo helped me understand how to turn a business idea into something practical. Initially, I thought most content creators struggled because they didn’t know how to edit. But after talking to different creators, I realised that even experienced editors struggle with time and managing content creation.</p>
+  <h3>2. What I learned</h3>
+  <p>The interviews helped me understand what creators actually need. Most of them wanted to save time, organise their footage easily and reduce repetitive editing work. I also learned that not everyone needs the same solution.</p>
+  <p>I understood that people showing interest in a product does not always mean they are willing to pay for it.</p>
+  <h3>3. Changes in my idea</h3>
+  <p>Initially, EditFlo was aimed at beginners and new creators. After the interviews, I decided to focus more on regular and experienced creators.</p>
+  <h3>4. Challenges</h3>
+  <p>The biggest challenge was understanding the different needs of creators. I also realised that my research was limited because I spoke only to a small number of people.</p>
+  <h3>5. What I would do next</h3>
+  <p>I would test EditFlo with real creators and see how much time it saves. I would also collect feedback, improve the workflow and test the pricing. I realised that it’s important to understand customers, listen to their problems and improve the idea based on their feedback.</p>
+  <p>My biggest learning is that a good business doesn’t always need to create something completely new. It can also make an existing process easier and better.</p>
+</section>
+
+<!-- ================= APPENDIX A ================= -->
+<section class="report" id="appa">
+  <div class="r-head"><div class="kicker">Appendix A</div><h1>Interview log, method and coding</h1>
+    <p class="lead">How the interviews were conducted and how the counts in Reports 2 and 3 were produced.</p></div>
+  <h2><span class="n">A.1</span>Interview log</h2>
+  <table>
+    <tr><th style="width:9mm">ID</th><th>Profile</th><th>Round 1</th><th>Round 2</th><th>Record</th></tr>
+    <tr><td class="k">A</td><td>Former Instagram page operator, long-form creator</td><td>Text conversation</td><td>Follow-up</td><td rowspan="5">Researcher’s notes, written from recollection after each conversation and summarised in Reports 2 and 3. For A and B, original chat screenshots are reproduced in Appendix B.</td></tr>
+    <tr><td class="k">B</td><td>MBBS student, experienced freelance editor</td><td>Text conversation</td><td>Follow-up</td></tr>
+    <tr><td class="k">C</td><td>Former YouTuber, gym-content creator</td><td>In person</td><td>—</td></tr>
+    <tr><td class="k">D</td><td>Full-time educator, also produces sponsored content</td><td>Phone</td><td>Follow-up</td></tr>
+    <tr><td class="k">E</td><td>Aspiring short-form creator</td><td>Phone</td><td>—</td></tr>
+  </table>
+  <p class="small">Five unique participants; eight conversations in total. Participant identities are anonymised.</p>
+
+  <h2><span class="n">A.2</span>Coding method</h2>
+  <p>A participant was counted under a theme only when their written summary (Reports 2 and 3) explicitly described a related experience, need or concern. A participant can appear under several themes. Counts are reported against the number of people asked in that round (5 in the first round, 3 in the follow-ups) and are shown as dots or fractions, never percentages.</p>
+  <table>
+    <tr><th style="width:52mm">Theme</th><th style="width:19mm">Count</th><th>Coded from</th></tr>
+    <tr><td colspan="3" style="background:var(--sunk);font-weight:600">First round (A–E)</td></tr>
+    <tr><td>Time, effort or mental fatigue</td><td>5 of 5</td><td>A editing time and fatigue · B limited time, perfectionism · C fatigue · D managing every role · E effort to reach quality</td></tr>
+    <tr><td>Finding, selecting or organising footage</td><td>4 of 5</td><td>A finding A-roll/B-roll · B finding relevant footage · C selecting useful angles · D selecting usable footage</td></tr>
+    <tr><td>Quality pressure or perfectionism</td><td>4 of 5</td><td>B perfectionism · C pressure for high quality · D quality and retention (hypothesis notes, section 2.4) · E dissatisfaction, polished output</td></tr>
+    <tr><td>Wants help that follows creative direction</td><td>3 of 5</td><td>B align with objective · C understand his vision · D director-like help</td></tr>
+    <tr><td>Equipment or cost constraints</td><td>3 of 5</td><td>A PC and subscriptions · B token-based pricing · C no laptop</td></tr>
+    <tr><td>Wants planning or pre-production help</td><td>2 of 5</td><td>C storyboarding · D idea evaluation and SEO planning</td></tr>
+    <tr><td>Has used AI editing tools</td><td>1 of 5</td><td>B</td></tr>
+    <tr><td>Has paid for editing help</td><td>1 of 5</td><td>A (about ₹1,500 per post; found it too costly)</td></tr>
+    <tr><td colspan="3" style="background:var(--sunk);font-weight:600">Follow-ups (A, B, D)</td></tr>
+    <tr><td>Wants repetitive execution delegated</td><td>3 of 3</td><td>A trimming · B cutting and trimming · D B-roll and repetitive editing</td></tr>
+    <tr><td>Creator intent must be respected</td><td>3 of 3</td><td>A keep key sections · B full creative control · D follow instructions, restore sections</td></tr>
+    <tr><td>Stated an acceptable level of AI autonomy</td><td>3 of 3</td><td>A substantial · B full control kept · D instruction-led with correction</td></tr>
+    <tr><td>Wants B-roll help</td><td>2 of 3</td><td>B, D (A declined)</td></tr>
+    <tr><td>Style must adapt to each project</td><td>2 of 3</td><td>B, D</td></tr>
+    <tr><td>Concerned about AI or processing cost</td><td>2 of 3</td><td>B token pricing · D unnecessary generations</td></tr>
+    <tr><td>Wants planning support in the product</td><td>0 of 3</td><td>B uses ChatGPT for planning; A and D did not ask for it</td></tr>
+  </table>
+  <div class="limit"><b>Limitations.</b> The sample is small and drawn from the researcher’s contacts. Most notes are based on recollection, not recordings; only the text conversations with A and B are reproduced as screenshots (Appendix B). No survey, statistical test, controlled time-saving test, market-size estimate or purchase validation was carried out. The visuals summarise qualitative coding only.</div>
+</section>
+
+<!-- ================= APPENDIX B ================= -->
+<section class="page-break" id="appb">
+  <div class="r-head"><div class="kicker">Appendix B</div><h1>Interview evidence and screenshots</h1></div>
+  <p>The assignment asks for interview proof such as transcripts or screenshots. This appendix states plainly what evidence exists, so that summaries are not mistaken for original records.</p>
+  <table>
+    <tr><th style="width:48mm">Evidence type</th><th style="width:30mm">Included</th><th>Notes</th></tr>
+    <tr><td>Researcher’s interview summaries</td><td>Yes</td><td>Reports 2 (A–E) and 3 (A, B, D), with observed accounts separated from interpretation.</td></tr>
+    <tr><td>Screenshots of the text conversation with A</td><td>Yes</td><td>Two screenshots, reproduced below and anonymised.</td></tr>
+    <tr><td>Screenshots of the text conversation with B</td><td>Yes</td><td>Four screenshots, reproduced below and anonymised.</td></tr>
+    <tr><td>Recordings of phone and in-person conversations</td><td>No</td><td>These conversations (C, D, E, and the follow-up with D) were not recorded; only the researcher’s notes exist.</td></tr>
+  </table>
+  <p>Apart from the screenshots below, the interview findings should be read as the researcher’s documented account of the conversations. All product screens in Report 4 are design prototypes, not interview evidence or proof of deployed functionality.</p>
+  <h2><span class="n">B.1</span>Participant A · text conversation</h2>
+  <p class="small">Unedited screenshots of the original Instagram conversation, cropped only to remove the participant’s name, username and profile pictures. Purple messages are the researcher’s; grey messages are Participant A’s. The thread covers topics from both rounds: editing time, footage selection and paying an editor, then automated trimming, protecting key explanations and B-roll.</p>
+  <div class="tw" style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:3mm">
+    <figure style="margin:0"><img src="img/A_chat_1.jpg" style="width:100%;border-radius:5pt;display:block" alt="Participant A conversation, part 1"><figcaption><b>A · part 1.</b> Editing time per short (about 1–1.5 hours), most of it spent going through footage.</figcaption></figure>
+    <figure style="margin:0"><img src="img/A_chat_2.jpg" style="width:100%;border-radius:5pt;display:block" alt="Participant A conversation, part 2"><figcaption><b>A · part 2.</b> Hired an editor at about ₹1,500 per post; trimming “for the useless parts sure, but the main explanation has to stay”; no to self-sourced B-roll.</figcaption></figure>
+  </div>
+</section>
+<section class="page-break">
+  <h2 style="margin-top:0"><span class="n">B.2</span>Participant B · text conversation</h2>
+  <p class="small">Unedited screenshots of the original Instagram conversation in reading order, cropped only to remove the participant’s name, username and profile pictures. Purple messages are the researcher’s; grey messages are Participant B’s. Consecutive screenshots overlap slightly. The images inside the chat are reaction memes sent during the conversation.</p>
+  <div class="tw" style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:3mm">
+    <figure style="margin:0"><img src="img/B_chat_1.jpg" style="width:100%;border-radius:5pt;display:block" alt="Participant B conversation, part 1"><figcaption><b>B · part 1.</b> A typical project mixes footage, photos, memes and overlays. Most time goes on “finding stuff, templates, blender assets” and on cutting and trimming, “the same thing every time”.</figcaption></figure>
+    <figure style="margin:0"><img src="img/B_chat_2.jpg" style="width:100%;border-radius:5pt;display:block" alt="Participant B conversation, part 2"><figcaption><b>B · part 2.</b> “The final edit stays with me”; “what i need changes every project”; sceptical that AI could adapt.</figcaption></figure>
+  </div>
+</section>
+<section class="page-break">
+  <div class="tw" style="display:grid;grid-template-columns:1fr 1fr;gap:5mm">
+    <figure style="margin:0"><img src="img/B_chat_3.jpg" style="width:100%;border-radius:5pt;display:block" alt="Participant B conversation, part 3"><figcaption><b>B · part 3.</b> “If it adapts im all for it”; B-roll suggestions welcome “if it matches my style”; currently uses Seedance and Google Flow.</figcaption></figure>
+    <figure style="margin:0"><img src="img/B_chat_4.jpg" style="width:100%;border-radius:5pt;display:block" alt="Participant B conversation, part 4"><figcaption><b>B · part 4.</b> Wants a simpler UI and low cost: “subscription is fine but token stuff is a straight no for me”.</figcaption></figure>
+  </div>
+</section>
+
+<script src="figures.js"></script>
+<script>document.querySelectorAll('img.slide').forEach(i=>i.src=i.getAttribute('src').replace('deck/','deckplain/'));</script>
+</body></html>
