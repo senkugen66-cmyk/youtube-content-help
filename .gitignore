@@ -4,3 +4,5 @@ editflo-submission/build/qa/
 editflo-submission/build/package-lock.json
 editflo-submission/build/deck/*.jpg
 editflo-submission/build/deck/grid*.png
+editflo-submission/source/evidence/
+editflo-submission/build/qa2/

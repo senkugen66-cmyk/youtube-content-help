@@ -84,9 +84,9 @@ pres.addSection({ title: 'Problem and customer' });
   txt(s, 'Creators can have the idea, the footage and the skills — and still lose hours to the same repetitive steps: reviewing takes, finding usable clips, trimming pauses and arranging the timeline.', { x: 0.6, y: 1.45, w: 5.4, h: 1.6, fontSize: 17, color: K.ink2 });
   txt(s, 'The burden is mental as well as practical: all five first-round participants described time pressure, effort or fatigue.', { x: 0.6, y: 3.25, w: 5.4, h: 1.0, fontSize: 14, color: K.mut });
   const stats = [
-    ['1.5–3 h', 'to edit a three-minute video', 'Participant A'],
+    ['1–1.5 h', 'to edit a single short video', 'Participant A'],
     ['~30 min', 'of work per finished minute of short-form video', 'Participant B'],
-    ['~₹2,000', 'previously paid per post for editing help', 'Participant A'],
+    ['~₹1,500', 'paid per post for an editor, then found it too costly', 'Participant A'],
   ];
   stats.forEach(([big, label, who], i) => {
     const y = 1.45 + i * 1.72;
@@ -207,7 +207,7 @@ pres.addSection({ title: 'Solution' });
   const rows = [
     [H('Alternative'), H('What it offers'), H('Where it falls short for this customer'), H('EditFlo’s intended difference')],
     [C('Manual editing', { bold: true, color: K.ink }), C('Full control'), C('Same repetitive steps every video'), C('Reusable instructions for the repetitive steps; creative decisions stay with the creator')],
-    [C('Freelance editor', { bold: true, color: K.ink }), C('Human judgement'), C('Cost per post, availability, briefing each time (A paid ~₹2,000/post)'), C('Repeatable workflow for recurring formats; not a replacement for bespoke editing')],
+    [C('Freelance editor', { bold: true, color: K.ink }), C('Human judgement'), C('Cost per post, availability, briefing each time (A paid ~₹1,500/post)'), C('Repeatable workflow for recurring formats; not a replacement for bespoke editing')],
     [C('General-purpose AI tools', { bold: true, color: K.ink }), C('Broad assistance'), C('Inconsistent output and token costs (B); no editing structure'), C('Creator-defined workflow stages, protected sections and review checkpoints')],
     [C('Editing applications', { bold: true, color: K.ink }), C('The editing environment'), C('Tools, not a repeatable process'), C('Works with the editor rather than replacing it')],
   ];
@@ -220,7 +220,7 @@ pres.addSection({ title: 'Business' });
 // 10 — Business model & pricing
 {
   const s = content('Business model and pricing test', 'Business',
-    'Both price points are hypotheses. Customers pay separately for their own AI assistant and editing software. The ₹2,000-per-post figure is one participant’s experience, used as a reference point only.');
+    'Both price points are hypotheses. Customers pay separately for their own AI assistant and editing software. The ₹1,500-per-post figure is one participant’s experience, used as a reference point only.');
   const opts = [['Option A', '₹3,000', 'one-time', 'Workflow repository + web library access. For creators who prefer a single payment.'], ['Option B', '₹500', 'per month', 'Lower-commitment way to start. Tests whether creators prefer to try before committing.']];
   opts.forEach(([k, p, per, d], i) => {
     const x = 0.6 + i * 3.95;
