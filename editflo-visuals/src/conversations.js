@@ -1,0 +1,116 @@
+// EditFlo — illustrative conversation reconstructions (editable source).
+// Every participant line is tied to a note in the brief via `src`. Interviewer lines
+// are reconstructed ("I-recon") unless documented ("I-doc"). "ack" = a connective
+// acknowledgement (e.g. "yeah") that carries no research claim.
+// `from`: "me" = interviewer (outgoing), "them" = participant (incoming).
+// Edit text here, then re-run `node render.js`.
+
+window.PARTICIPANTS = {
+  A: { name: "Rohan",            username: "rohan.mkv_19",     avatar: { kind: "initial", letter: "R", bg: "#1F9E8F" } },
+  B: { name: null,               username: "keyframe.goblin",  avatar: { kind: "keyframe", bg: "#6B4BD8" } },
+  C: { name: "Adi",              username: "adi.reps_03",      avatar: { kind: "initial", letter: "A", bg: "#E0782F" } },
+  D: { name: "Neha",             username: "neha.growthnotes", avatar: { kind: "initial", letter: "N", bg: "#3E9A54" } },
+  E: { name: null,               username: "ishhh.mp4",        avatar: { kind: "rings", bg: "#D2508A" } },
+};
+
+window.CONVERSATIONS = {
+  A_01: { participant: "A", screen: 1, topic: "The time and effort behind a short video", messages: [
+    { from: "me",   text: "hey! working on a project around video editing for creators. you used to make reels and longer videos right?", src: "I-recon" },
+    { from: "them", text: "yeah, did both for a while", src: "A1" },
+    { from: "me",   text: "how long would a short one take you to edit", src: "I-recon" },
+    { from: "them", text: "like 1.5 to 3 hours usually", src: "A2" },
+    { from: "me",   text: "for one short?", src: "I-recon" },
+    { from: "them", text: "yeah, most of it is going through the footage and figuring out what's usable", src: "A2, A4" },
+    { from: "them", text: "and what I can use really depends on what I actually got on camera", src: "A4" },
+    { from: "me",   text: "did you ever pay someone to edit for you", src: "I-recon" },
+    { from: "them", text: "I did for a bit. around ₹2,000 per post", src: "A3" },
+  ]},
+  A_02: { participant: "A", screen: 2, topic: "Trimming without losing the point", messages: [
+    { from: "me",   text: "following up on what we talked about. you said you cut roughly every 30 seconds?", src: "I-recon" },
+    { from: "them", text: "yeah roughly, helps keep retention up", src: "A6" },
+    { from: "me",   text: "so if something auto-trimmed the extra bits, would that actually help", src: "I-recon" },
+    { from: "them", text: "for the unnecessary stuff, sure", src: "A6" },
+    { from: "them", text: "but the key explanations have to stay", src: "A5, A6" },
+    { from: "them", text: "if it cuts the part where I actually explain the point, the video doesn't work anymore", src: "A5" },
+    { from: "me",   text: "got it, so trimming around the main points, not through them", src: "I-recon (restates A5/A6)" },
+    { from: "me",   text: "and if it added b-roll by itself?", src: "I-recon" },
+    { from: "them", text: "nah I wouldn't want that", src: "A7" },
+    { from: "them", text: "AI helping with the edit is fine, but I want to choose the footage myself", src: "A7" },
+  ]},
+  B_01: { participant: "B", screen: 1, topic: "The hidden work in an edit", messages: [
+    { from: "me",   text: "hey, I'm looking into how people actually edit. what does a normal project look like for you", src: "I-recon" },
+    { from: "them", text: "depends entirely on the project tbh", src: "B6" },
+    { from: "them", text: "it's usually a mix. video, photos, memes, overlays", src: "B2" },
+    { from: "me",   text: "where does most of the time go", src: "I-recon" },
+    { from: "them", text: "finding stuff. templates, blender assets, whatever fits the look", src: "B3" },
+    { from: "them", text: "and then there's the frame by frame work, which takes ages", src: "B4" },
+    { from: "me",   text: "do you use anything for ideas", src: "I-recon" },
+    { from: "them", text: "chatgpt, for ideation mostly", src: "B9" },
+    { from: "me",   text: "does what you need change much between projects", src: "I-recon" },
+    { from: "them", text: "completely. the footage depends on what the project is trying to do", src: "B6" },
+  ]},
+  B_02: { participant: "B", screen: 2, topic: "Automate the cuts, keep the control", messages: [
+    { from: "me",   text: "if a tool could take one part of editing off your plate, what would you pick", src: "I-recon" },
+    { from: "them", text: "cutting and trimming. it's the most repetitive part", src: "B5" },
+    { from: "me",   text: "and the rest of the edit?", src: "I-recon" },
+    { from: "them", text: "that stays with me. I want full control over the final cut", src: "B7" },
+    { from: "me",   text: "fair. what if it suggested b-roll", src: "I-recon" },
+    { from: "them", text: "as an option, maybe", src: "B8" },
+    { from: "them", text: "only if it actually fits the direction I'm going for", src: "B8" },
+    { from: "me",   text: "and pricing, how would you want that to work", src: "I-recon" },
+    { from: "them", text: "I'm already paying for adobe", src: "B10" },
+    { from: "them", text: "a subscription is fine. I just don't want token-based stuff where I can't predict what it'll cost", src: "B10" },
+  ]},
+  C_01: { participant: "C", screen: 1, topic: "Keeping it going with limited resources", messages: [
+    { from: "me",   text: "hey Adi, doing some research on creators and editing. you had a youtube channel before right?", src: "I-recon" },
+    { from: "them", text: "yeah, mostly gym stuff", src: "C1" },
+    { from: "me",   text: "what was the hardest part of keeping it going", src: "I-recon" },
+    { from: "them", text: "equipment honestly", src: "C4" },
+    { from: "them", text: "and the workload", src: "C4" },
+    { from: "me",   text: "how much did the footage you had affect the edit", src: "I-recon" },
+    { from: "them", text: "a lot. you can only edit what you've got", src: "C5" },
+  ]},
+  C_02: { participant: "C", screen: 2, topic: "Lots of angles, little of it used", messages: [
+    { from: "me",   text: "when you were filming, did you usually shoot from a few angles", src: "I-recon" },
+    { from: "them", text: "yeah, a few", src: "C2" },
+    { from: "me",   text: "and you'd go through all of it after?", src: "I-recon" },
+    { from: "them", text: "yeah", src: "C2" },
+    { from: "me",   text: "how much of it actually made it into the video", src: "I-recon" },
+    { from: "them", text: "not much. only a small part usually", src: "C3" },
+  ]},
+  D_01: { participant: "D", screen: 1, topic: "Script-led production and the repetitive part", messages: [
+    { from: "me",   text: "hi Neha, I'm researching how creators handle editing. you're doing this full time right?", src: "I-recon" },
+    { from: "them", text: "yes, I make performance marketing education content", src: "D1" },
+    { from: "me",   text: "how does a video usually come together for you", src: "I-recon" },
+    { from: "them", text: "the company gives me the script and instructions and I work from that", src: "D2" },
+    { from: "them", text: "so the process is fairly structured", src: "D2" },
+    { from: "me",   text: "where does it get tedious", src: "I-recon" },
+    { from: "them", text: "the repetitive editing, mostly", src: "D3" },
+    { from: "me",   text: "would you hand any of that off", src: "I-recon" },
+    { from: "them", text: "the repetitive parts, yes", src: "D4" },
+    { from: "them", text: "and b-roll too, choosing it and placing it", src: "D4" },
+  ]},
+  D_02: { participant: "D", screen: 2, topic: "Trust, control and the cost of AI editing", messages: [
+    { from: "me",   text: "so if the AI handled the trimming, would you be okay with that", src: "I-recon" },
+    { from: "them", text: "trimming is fine", src: "D5" },
+    { from: "them", text: "but if it cuts something important, I need to be able to restore that section myself using the timestamps", src: "D5" },
+    { from: "me",   text: "yeah that makes sense", src: "ack" },
+    { from: "them", text: "also, how much would alternative clips cost? and how many tokens would all this use?", src: "D6" },
+    { from: "me",   text: "right now the idea is a one-time MCP repository that you set up once", src: "I-doc" },
+    { from: "me",   text: "it does need a capable, pro-level AI model to run properly", src: "I-doc" },
+    { from: "them", text: "okay. I'd consider paying if the results justify the cost", src: "D7" },
+  ]},
+  E_01: { participant: "E", screen: 1, topic: "Getting started with short-form", messages: [
+    { from: "me",   text: "hey! doing some research on short-form editing. you've been getting into making short-form stuff right?", src: "I-recon" },
+    { from: "them", text: "yeah trying to", src: "E1" },
+    { from: "them", text: "still pretty new to it", src: "E1, E5" },
+    { from: "me",   text: "what are you editing on", src: "I-recon" },
+    { from: "them", text: "capcut", src: "E2" },
+  ]},
+  E_02: { participant: "E", screen: 2, topic: "Trying styles, aiming for polish", messages: [
+    { from: "me",   text: "in capcut do you stick to one style or switch it up", src: "I-recon" },
+    { from: "them", text: "switch it up, I've been trying a few different ones", src: "E2, E3" },
+    { from: "me",   text: "what are you going for with them", src: "I-recon" },
+    { from: "them", text: "I just want the final thing to look polished", src: "E4" },
+  ]},
+};

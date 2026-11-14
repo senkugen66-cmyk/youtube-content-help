@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EditFlo Conversation Screen</title>
+<!-- Renders one screen: screen.html#A_01. Measurements are in native iPhone px
+     (1179 × 2556, 3×), taken from the supplied Instagram DM reference screenshots. -->
+<style>
+  :root {
+    --bg: #0C0F14;
+    --in-bubble: #25282E;
+    --text: #F8F9F9;
+    --btn: #15171B;
+    --btn-border: #2A2E35;
+    --composer: #1C1D1F;
+    --placeholder: #8E929A;
+    --accent: #5454F0;
+    --page: #FFFFFF;
+    --caption: #3A3D44;
+    --caption-muted: #6B707A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--page); }
+  body { font-family: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+         -webkit-font-smoothing: antialiased; font-feature-settings: "cv11" 1, "ss03" 1; }
+
+  /* Export sheet: phone + caption, white page for PDF insertion */
+  .sheet { width: 1379px; padding: 70px 78px 64px; background: var(--page); }
+  .device { width: 1223px; padding: 22px; border-radius: 182px; background: #1B1C1F;
+            box-shadow: 0 0 0 3px #2C2D31 inset, 0 18px 50px rgba(0,0,0,.18); }
+  .screen { position: relative; width: 1179px; height: 2556px; overflow: hidden;
+            border-radius: 160px; background: var(--bg); color: var(--text); }
+
+  /* Status bar */
+  .status { position: absolute; top: 0; left: 0; right: 0; height: 150px; }
+  .status .time { position: absolute; left: 148px; top: 58px; font-size: 52px; font-weight: 600;
+                  letter-spacing: -0.5px; line-height: 60px; }
+  .status .right { position: absolute; right: 98px; top: 70px; display: flex; gap: 20px; align-items: center; }
+
+  /* Header */
+  .header { position: absolute; top: 195px; left: 48px; right: 36px; height: 132px; }
+  .circle-btn { position: absolute; top: 0; width: 132px; height: 132px; border-radius: 50%;
+                background: var(--btn); box-shadow: 0 0 0 2px var(--btn-border) inset;
+                display: flex; align-items: center; justify-content: center; }
+  .back { left: 0; }
+  .hdr-avatar { position: absolute; left: 167px; top: 17px; width: 98px; height: 98px; }
+  .ident { position: absolute; left: 295px; top: 0; height: 132px; width: 336px; display: flex; flex-direction: column; justify-content: center; }
+  .ident .name { font-size: 44px; font-weight: 700; line-height: 52px; letter-spacing: -0.3px; display: flex; align-items: center; gap: 14px; white-space: nowrap; }
+  .ident .name span { overflow: hidden; text-overflow: ellipsis; }
+  .ident .name svg { flex: 0 0 auto; }
+  .ident .user { font-size: 36px; font-weight: 400; line-height: 46px; color: #E9EAEC; letter-spacing: -0.1px; }
+  .act1 { left: 645px; } .act2 { left: 813px; } .act3 { left: 981px; }
+
+  /* Thread */
+  .thread { position: absolute; left: 0; right: 0; top: 360px; bottom: 300px;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 0 25px 0 48px; }
+  .row { display: flex; align-items: flex-end; }
+  .row.me { justify-content: flex-end; }
+  .row + .row { margin-top: 8px; }
+  .row.switch { margin-top: 36px; }
+  .row .av { width: 84px; height: 84px; flex: 0 0 84px; margin-right: 36px; }
+  .row .av.blank { visibility: hidden; }
+  .bubble { max-width: 900px; padding: 30px 40px 29px; border-radius: 60px;
+            font-size: 46.5px; line-height: 60px; letter-spacing: -0.35px; font-weight: 400;
+            overflow-wrap: break-word; }
+  .them .bubble { background: var(--in-bubble); }
+  .me .bubble { color: #FFFFFF; }
+
+  /* Composer */
+  .composer { position: absolute; left: 24px; right: 24px; top: 2298px; height: 132px; border-radius: 66px;
+              background: var(--composer); display: flex; align-items: center; }
+  .cam { position: absolute; left: 16px; top: 16px; width: 100px; height: 100px; border-radius: 50%;
+         background: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .placeholder { position: absolute; left: 146px; font-size: 46px; color: var(--placeholder); letter-spacing: -0.3px; }
+  .tools { position: absolute; right: 44px; top: 33px; display: flex; gap: 54px; }
+  .home { position: absolute; left: 380px; width: 420px; top: 2518px; height: 14px; border-radius: 7px; background: #8B8D8F; }
+
+  /* Caption below the phone (outside the UI) */
+  .caption { margin-top: 54px; text-align: center; }
+  .caption .footer { font-size: 34px; line-height: 46px; font-weight: 600; color: var(--caption); letter-spacing: -0.1px; }
+  .caption .note { margin: 20px auto 0; max-width: 1140px; font-size: 29px; line-height: 42px; color: var(--caption-muted); }
+</style>
+</head>
+<body>
+<div class="sheet" id="sheet">
+  <div class="device"><div class="screen" id="screen">
+    <div class="status">
+      <div class="time">9:41</div>
+      <div class="right">
+        <svg width="58" height="36" viewBox="0 0 58 36"><g fill="#fff"><rect x="0" y="24" width="10" height="12" rx="3"/><rect x="16" y="17" width="10" height="19" rx="3"/><rect x="32" y="9" width="10" height="27" rx="3"/><rect x="48" y="0" width="10" height="36" rx="3"/></g></svg>
+        <svg width="52" height="38" viewBox="0 0 52 38"><g fill="#fff"><path d="M26 30.5a4.5 4.5 0 1 1 0 .01z"/><path d="M14.5 24.2a16.5 16.5 0 0 1 23 0l-3.9 3.9a11 11 0 0 0-15.2 0z"/><path d="M6.6 16.4a27.5 27.5 0 0 1 38.8 0l-3.9 3.9a22 22 0 0 0-31 0z"/><path d="M-1.2 8.6a38.5 38.5 0 0 1 54.4 0l-3.9 3.9a33 33 0 0 0-46.6 0z" transform="translate(0.6 0)"/></g></svg>
+        <svg width="82" height="38" viewBox="0 0 82 38"><rect x="1.5" y="1.5" width="70" height="35" rx="10" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="3"/><rect x="6" y="6" width="54" height="26" rx="6" fill="#fff"/><path d="M76 13v12a6 6 0 0 0 0-12z" fill="#fff" fill-opacity=".45"/></svg>
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="circle-btn back"><svg width="44" height="64" viewBox="0 0 44 64"><path d="M34 6 8 32l26 26" fill="none" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="hdr-avatar" id="hdrAvatar"></div>
+      <div class="ident"><div class="name" id="hdrName"></div><div class="user" id="hdrUser"></div></div>
+      <div class="circle-btn act1"><svg width="78" height="78" viewBox="0 0 78 78" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"><defs><mask id="cut"><rect width="78" height="78" fill="#fff"/><circle cx="29" cy="48" r="25" fill="#000"/></mask></defs><circle cx="29" cy="48" r="20"/><path d="M20 52c4 5 14 5 18 0"/><circle cx="22" cy="42" r="1.2" fill="#fff"/><circle cx="36" cy="42" r="1.2" fill="#fff"/><circle cx="49" cy="29" r="20" mask="url(#cut)"/><path d="M51 19v18M42 28h18"/></svg></div>
+      <div class="circle-btn act2"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="5.5" stroke-linejoin="round"><path d="M14 5h10l5 13-7 5a34 34 0 0 0 19 19l5-7 13 5v10a7 7 0 0 1-7 7C27 57 7 37 7 12a7 7 0 0 1 7-7z"/></svg></div>
+      <div class="circle-btn act3"><svg width="72" height="56" viewBox="0 0 72 56" fill="none" stroke="#fff" stroke-width="5.5" stroke-linejoin="round"><rect x="3" y="5" width="46" height="46" rx="10"/><path d="M49 23l17-11v32L49 33z"/></svg></div>
+    </div>
+
+    <div class="thread" id="thread"></div>
+
+    <div class="composer">
+      <div class="cam"><svg width="58" height="48" viewBox="0 0 58 48"><path d="M20 2h18l4 7h8a7 7 0 0 1 7 7v24a7 7 0 0 1-7 7H8a7 7 0 0 1-7-7V16a7 7 0 0 1 7-7h8z" fill="#fff"/><circle cx="29" cy="27" r="11" fill="none" stroke="#5454F0" stroke-width="6"/></svg></div>
+      <div class="placeholder">Message...</div>
+      <div class="tools">
+        <svg width="66" height="66" viewBox="0 0 66 66" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round"><rect x="21" y="3" width="24" height="38" rx="12"/><path d="M11 30a22 22 0 0 0 44 0M33 52v11M22 63h22"/></svg>
+        <svg width="66" height="66" viewBox="0 0 66 66" fill="none" stroke="#fff" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="4" width="58" height="58" rx="12"/><circle cx="22" cy="22" r="6"/><path d="M5 50l16-16 13 12 9-8 18 16"/></svg>
+        <svg width="66" height="66" viewBox="0 0 66 66" fill="none" stroke="#fff" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"><path d="M62 38V16A12 12 0 0 0 50 4H16A12 12 0 0 0 4 16v34a12 12 0 0 0 12 12h22z"/><path d="M38 62c0-14 10-24 24-24"/><path d="M20 36c4 6 13 7 18 2"/><circle cx="22" cy="24" r="1" fill="#fff"/><circle cx="42" cy="24" r="1" fill="#fff"/></svg>
+        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round"><circle cx="35" cy="35" r="31"/><path d="M35 20v30M20 35h30"/></svg>
+      </div>
+    </div>
+    <div class="home"></div>
+  </div></div>
+
+  <div class="caption">
+    <div class="footer" id="footer"></div>
+    <div class="note">Reconstructed from the participant's interview notes. The Instagram DM layout is used only as a presentation format and does not indicate where or how the interview took place. Name, username and avatar are anonymised.</div>
+  </div>
+</div>
+
+<script src="conversations.js"></script>
+<script>
+(function () {
+  const id = (location.hash || "#A_01").slice(1);
+  const conv = CONVERSATIONS[id];
+  const p = PARTICIPANTS[conv.participant];
+
+  function avatarSVG(a, size) {
+    const s = size;
+    let inner = "";
+    if (a.kind === "initial") {
+      inner = `<text x="50" y="50" dy=".35em" text-anchor="middle" font-family="Inter" font-weight="600" font-size="46" fill="#fff">${a.letter}</text>`;
+    } else if (a.kind === "keyframe") {
+      inner = `<path d="M50 24 76 50 50 76 24 50z" fill="#fff"/><path d="M50 38 62 50 50 62 38 50z" fill="${a.bg}"/>`;
+    } else if (a.kind === "rings") {
+      inner = `<circle cx="40" cy="50" r="16" fill="none" stroke="#fff" stroke-width="7"/><circle cx="62" cy="50" r="16" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="7"/>`;
+    }
+    return `<svg width="${s}" height="${s}" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="${a.bg}"/>${inner}</svg>`;
+  }
+
+  document.getElementById("hdrAvatar").innerHTML = avatarSVG(p.avatar, 98);
+  const chevron = `<svg width="20" height="34" viewBox="0 0 20 34"><path d="M3 3l14 14L3 31" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  document.getElementById("hdrName").innerHTML = `<span>${p.name || p.username}</span>${chevron}`;
+  document.getElementById("hdrUser").textContent = p.name ? p.username : "";
+  if (!p.name) document.getElementById("hdrUser").style.display = "none";
+
+
+  // Long titles (e.g. a username with no display name): shrink to fit, min 38px.
+  const nameEl = document.getElementById("hdrName");
+  const nameSpan = nameEl.querySelector("span");
+  const need = () => nameSpan.scrollWidth + 14 + 20;   // text + gap + chevron
+  for (let fs = 43; fs >= 38 && need() > 336; fs--) nameEl.style.fontSize = fs + "px";
+  document.body.dataset.nameFit = need() <= 336 ? "ok" : "truncated";
+
+  const thread = document.getElementById("thread");
+  const msgs = conv.messages;
+  msgs.forEach((m, i) => {
+    const row = document.createElement("div");
+    row.className = "row " + m.from;
+    if (i > 0 && msgs[i - 1].from !== m.from) row.classList.add("switch");
+    if (m.from === "them") {
+      const lastInRun = i === msgs.length - 1 || msgs[i + 1].from !== "them";
+      const av = document.createElement("div");
+      av.className = "av" + (lastInRun ? "" : " blank");
+      av.innerHTML = avatarSVG(p.avatar, 84);
+      row.appendChild(av);
+    }
+    const b = document.createElement("div");
+    b.className = "bubble";
+    b.textContent = m.text;
+    row.appendChild(b);
+    thread.appendChild(row);
+  });
+
+  // Instagram tints sent bubbles by their vertical position on screen.
+  // Gradient stops sampled from the reference screenshots (y in screen px).
+  const screen = document.getElementById("screen");
+  const sTop = screen.getBoundingClientRect().top;
+  const grad = "linear-gradient(180deg, #A83DD2 0px, #9F3CD5 540px, #8A3BE0 900px, #6740F1 1680px, #5D49F0 2050px, #5550EF 2556px)";
+  document.querySelectorAll(".me .bubble").forEach(b => {
+    const y = b.getBoundingClientRect().top - sTop;
+    b.style.backgroundImage = grad;
+    b.style.backgroundSize = "100% 2556px";
+    b.style.backgroundPosition = `0 ${-y}px`;
+  });
+
+  // Fail loudly if the thread overflows under the header.
+  const first = thread.firstElementChild;
+  if (first && first.getBoundingClientRect().top - sTop < 360) document.body.dataset.overflow = "1";
+
+  const n = conv.participant;
+  document.getElementById("footer").innerHTML =
+    `Participant ${n} · Screen ${conv.screen} of 2 ·<br>Illustrative reconstruction — not an original chat record`;
+  document.title = id;
+  document.body.dataset.ready = "1";
+})();
+</script>
+</body>
+</html>
