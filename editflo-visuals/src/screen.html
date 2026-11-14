@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <title>EditFlo Conversation Screen</title>
 <!-- Renders one screen: screen.html#A_01. Measurements are in native iPhone px
-     (1179 × 2556, 3×), taken from the supplied Instagram DM reference screenshots. -->
+     (1179 × 2556, 3×), taken from the supplied Instagram DM reference screenshots.
+     Rendered on a 1320 × 2868 (3×, same aspect ratio, larger iPhone) screen so the longer
+     approved conversations fit without shrinking type: all text, bubble and icon sizes are
+     unchanged from the reference; edge-anchored elements keep their reference insets. -->
 <style>
   :root {
     --bg: #0C0F14;
@@ -25,10 +28,10 @@
          -webkit-font-smoothing: antialiased; font-feature-settings: "cv11" 1, "ss03" 1; }
 
   /* Export sheet: phone + caption, white page for PDF insertion */
-  .sheet { width: 1379px; padding: 70px 78px 64px; background: var(--page); }
-  .device { width: 1223px; padding: 22px; border-radius: 182px; background: #1B1C1F;
+  .sheet { width: 1520px; padding: 70px 78px 64px; background: var(--page); }
+  .device { width: 1364px; padding: 22px; border-radius: 182px; background: #1B1C1F;
             box-shadow: 0 0 0 3px #2C2D31 inset, 0 18px 50px rgba(0,0,0,.18); }
-  .screen { position: relative; width: 1179px; height: 2556px; overflow: hidden;
+  .screen { position: relative; width: 1320px; height: 2868px; overflow: hidden;
             border-radius: 160px; background: var(--bg); color: var(--text); }
 
   /* Status bar */
@@ -38,18 +41,18 @@
   .status .right { position: absolute; right: 98px; top: 70px; display: flex; gap: 20px; align-items: center; }
 
   /* Header */
-  .header { position: absolute; top: 195px; left: 48px; right: 36px; height: 132px; }
+  .header { position: absolute; top: 195px; left: 48px; right: 37px; height: 132px; }
   .circle-btn { position: absolute; top: 0; width: 132px; height: 132px; border-radius: 50%;
                 background: var(--btn); box-shadow: 0 0 0 2px var(--btn-border) inset;
                 display: flex; align-items: center; justify-content: center; }
   .back { left: 0; }
   .hdr-avatar { position: absolute; left: 167px; top: 17px; width: 98px; height: 98px; }
-  .ident { position: absolute; left: 295px; top: 0; height: 132px; width: 336px; display: flex; flex-direction: column; justify-content: center; }
+  .ident { position: absolute; left: 295px; top: 0; height: 132px; width: 452px; display: flex; flex-direction: column; justify-content: center; }
   .ident .name { font-size: 44px; font-weight: 700; line-height: 52px; letter-spacing: -0.3px; display: flex; align-items: center; gap: 14px; white-space: nowrap; }
   .ident .name span { overflow: hidden; text-overflow: ellipsis; }
   .ident .name svg { flex: 0 0 auto; }
   .ident .user { font-size: 36px; font-weight: 400; line-height: 46px; color: #E9EAEC; letter-spacing: -0.1px; }
-  .act1 { left: 645px; } .act2 { left: 813px; } .act3 { left: 981px; }
+  .act1 { right: 336px; } .act2 { right: 168px; } .act3 { right: 0; }
 
   /* Thread */
   .thread { position: absolute; left: 0; right: 0; top: 360px; bottom: 300px;
@@ -60,20 +63,20 @@
   .row.switch { margin-top: 36px; }
   .row .av { width: 84px; height: 84px; flex: 0 0 84px; margin-right: 36px; }
   .row .av.blank { visibility: hidden; }
-  .bubble { max-width: 900px; padding: 30px 40px 29px; border-radius: 60px;
+  .bubble { max-width: 1006px; padding: 30px 40px 29px; border-radius: 60px;
             font-size: 46.5px; line-height: 60px; letter-spacing: -0.35px; font-weight: 400;
             overflow-wrap: break-word; }
   .them .bubble { background: var(--in-bubble); }
   .me .bubble { color: #FFFFFF; }
 
   /* Composer */
-  .composer { position: absolute; left: 24px; right: 24px; top: 2298px; height: 132px; border-radius: 66px;
+  .composer { position: absolute; left: 24px; right: 24px; bottom: 126px; height: 132px; border-radius: 66px;
               background: var(--composer); display: flex; align-items: center; }
   .cam { position: absolute; left: 16px; top: 16px; width: 100px; height: 100px; border-radius: 50%;
          background: var(--accent); display: flex; align-items: center; justify-content: center; }
   .placeholder { position: absolute; left: 146px; font-size: 46px; color: var(--placeholder); letter-spacing: -0.3px; }
   .tools { position: absolute; right: 44px; top: 33px; display: flex; gap: 54px; }
-  .home { position: absolute; left: 380px; width: 420px; top: 2518px; height: 14px; border-radius: 7px; background: #8B8D8F; }
+  .home { position: absolute; left: calc(50% - 210px); width: 420px; bottom: 24px; height: 14px; border-radius: 7px; background: #8B8D8F; }
 
   /* Caption below the phone (outside the UI) */
   .caption { margin-top: 54px; text-align: center; }
@@ -119,7 +122,7 @@
 
   <div class="caption">
     <div class="footer" id="footer"></div>
-    <div class="note">Reconstructed from the participant's interview notes. The Instagram DM layout is used only as a presentation format and does not indicate where or how the interview took place. Names and usernames are anonymised, and profile pictures are placeholder images, not photos of participants.</div>
+    <div class="note" id="note"></div>
   </div>
 </div>
 
@@ -157,8 +160,8 @@
   const nameEl = document.getElementById("hdrName");
   const nameSpan = nameEl.querySelector("span");
   const need = () => nameSpan.scrollWidth + 14 + 20;   // text + gap + chevron
-  for (let fs = 43; fs >= 38 && need() > 336; fs--) nameEl.style.fontSize = fs + "px";
-  document.body.dataset.nameFit = need() <= 336 ? "ok" : "truncated";
+  for (let fs = 43; fs >= 38 && need() > 452; fs--) nameEl.style.fontSize = fs + "px";
+  document.body.dataset.nameFit = need() <= 452 ? "ok" : "truncated";
 
   const thread = document.getElementById("thread");
   const msgs = conv.messages;
@@ -184,11 +187,12 @@
   // Gradient stops sampled from the reference screenshots (y in screen px).
   const screen = document.getElementById("screen");
   const sTop = screen.getBoundingClientRect().top;
-  const grad = "linear-gradient(180deg, #A83DD2 0px, #9F3CD5 540px, #8A3BE0 900px, #6740F1 1680px, #5D49F0 2050px, #5550EF 2556px)";
+  const H = screen.offsetHeight;  // stops sampled on the 2556px reference, kept proportional
+  const grad = "linear-gradient(180deg, #A83DD2 0%, #9F3CD5 21.1%, #8A3BE0 35.2%, #6740F1 65.7%, #5D49F0 80.2%, #5550EF 100%)";
   document.querySelectorAll(".me .bubble").forEach(b => {
     const y = b.getBoundingClientRect().top - sTop;
     b.style.backgroundImage = grad;
-    b.style.backgroundSize = "100% 2556px";
+    b.style.backgroundSize = `100% ${H}px`;
     b.style.backgroundPosition = `0 ${-y}px`;
   });
 
@@ -198,7 +202,9 @@
 
   const n = conv.participant;
   document.getElementById("footer").innerHTML =
-    `Participant ${n} · Screen ${conv.screen} of 2 ·<br>Illustrative reconstruction — not an original chat record`;
+    `Participant ${n} · Screen ${conv.screen} of 2 ·<br>Illustrative reconstruction from interview notes — not an original chat record.`;
+  document.getElementById("note").textContent =
+    `Participant ${n} was interviewed through a text conversation. No original transcript was supplied, so this screen reconstructs the discussion from the interview notes. Shown in Instagram DM layout for presentation. Names and usernames are anonymised; the profile picture is a placeholder image.`;
   document.title = id;
   document.body.dataset.ready = "1";
 })();

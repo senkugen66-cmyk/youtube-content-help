@@ -1,85 +1,83 @@
-# EditFlo: conversation visuals, source map
+# EditFlo: Instagram DM visuals, source map (Participants A and B)
 
-**All 10 screens are illustrative reconstructions. None of them is an original chat record.** No genuine DM or interview transcripts were available. Each screen is reconstructed from the participant notes in the project brief.
+## Scope
 
-Instagram's DM layout is only a presentation format. It does not indicate where or how any interview took place. A caption under every phone says this. Names and usernames are anonymised. Profile pictures are placeholder images (cartoon, meme and illustration graphics chosen by the author), not photos of participants. They are stored in `src/avatars/`.
+| Participant | Interview method | DM visuals |
+|---|---|---|
+| A | Text conversation | A_01, A_02 |
+| B | Text conversation | B_01, B_02 |
+| C | In person | None. Documented in interview summaries elsewhere. |
+| D | Phone or in person | None. Documented in interview summaries elsewhere. |
+| E | Phone or in person | None. Documented in interview summaries elsewhere. |
 
-## Conventions
+**Deliverable:** 4 PNGs.
 
-- **No dates and no message timestamps.** The status-bar clock shows `9:41`, the standard device-mockup placeholder.
-- **No read receipts, reactions, emojis or typing indicators.**
-- **Interviewer lines are reconstructed (`I-recon`)**, except D_02's MCP explanation, which is documented in the notes (`I-doc`).
-- **`banter`** marks casual filler (greetings, "lol", "real", "fair fair", "yeah makes sense"). It carries no research claim and was added so the chats read as relaxed, Gen Z-style DMs.
-- **Tone:** all chats use a casual, lowercase Gen Z register at the author's request. Wording is reconstructed; research points are unchanged.
-- **Every participant line traces to a numbered note below.** The per-line mapping is in `src/conversations.js`, in each message's `src` field.
+**Evidence status:** all 4 are illustrative reconstructions. No original chat transcripts were supplied, so none of the screens is an original chat record. The original conversations are not claimed to have taken place on Instagram. The screens are shown in Instagram DM layout for presentation.
 
-## Participant notes (from the brief)
+## Documented findings
 
-| Note | Content |
+| Code | Finding |
 |---|---|
-| A1 | Previously made Instagram and longer-form video content. |
+| A1 | Former Instagram and long-form content creator. |
 | A2 | A short video took about 1.5–3 hours to edit. |
-| A3 | Paid about ₹2,000 per post for editing help. |
-| A4 | Footage selection was a major part of the process. The available footage decided which clips could be used. |
-| A5 | Important speaking points and explanations had to be kept. Automation must not remove the key message. |
-| A6 | Edited roughly every 30 seconds for retention. Unnecessary footage could be trimmed, but key explanations had to stay. |
-| A7 | Interested in AI help with editing. Didn't want it inventing B-roll or planning footage. Wanted control over sourcing and selecting footage. |
-| B2 | Works with video, photos, memes, overlays and other visual assets. |
-| B3 | Spends time finding templates and Blender/3D assets. |
-| B4 | Some work is frame-by-frame. |
-| B5 | Would most like to eliminate cutting and trimming. |
-| B6 | Footage needs depend on each project's objective. |
-| B7 | Wants full creative control over the final edit. |
-| B8 | Open to optional B-roll suggestions that match the intended direction. |
-| B9 | Uses ChatGPT for ideation. |
-| B10 | Already pays for Adobe. Prefers predictable subscription pricing over token-based charges. |
-| C1 | Previously made YouTube and gym-related content. |
-| C2 | Reviewed several camera angles or pieces of footage. |
-| C3 | Often used only a small selection of the available footage. |
-| C4 | Equipment and workload were challenges. |
-| C5 | The amount of footage available affected what could realistically be edited. |
-| D1 | Creates performance-marketing education content professionally, full-time. |
-| D2 | Works from company-provided scripts and instructions. Has a structured production process. |
-| D3 | Repetitive editing is a major concern. |
-| D4 | Discussed delegating repetitive editing and B-roll selection and placement. |
-| D5 | Comfortable with AI trimming, but wants to restore important timestamped sections manually. |
-| D6 | Asked about the cost of alternative clips and token use. |
-| D7 | Would consider paying only if the results justified the cost. Did not agree to buy. |
-| I-doc (D) | The interviewer explained the proposed one-time MCP repository approach and that it needs a capable/pro AI model. |
-| E1 | Interested in making short-form content. Described as an aspiring creator. |
-| E2 | Uses CapCut. |
-| E3 | Has tried different editing styles. |
-| E4 | Wants a polished final output. |
-| E5 | Less experienced than B and D. Used only to set E's tone. |
+| A3 | Previously paid about ₹2,000 per post for editing help. |
+| A4 | Footage selection was important. The available source footage shaped editing decisions. |
+| A5 | Important speaking points had to stay in the final video. |
+| A6 | Trimmed roughly every 30 seconds to maintain retention. Unnecessary footage can go, but key explanations must stay. |
+| A7 | Interested in AI editing help, but didn't want the system inventing or sourcing B-roll on its own. |
+| B1 | Works with video, photography, memes, overlays and other visual assets. |
+| B2 | Spends time searching for templates and Blender/3D assets. |
+| B3 | Would like to reduce repetitive cutting and trimming. |
+| B4 | Editing decisions depend on each project's objective. |
+| B5 | Wants creative control over the final output. |
+| B6 | Open to optional B-roll suggestions that match the intended direction. |
+| B7 | Uses ChatGPT for ideation. |
+| B8 | Already pays for Adobe. Prefers predictable pricing over unpredictable token-based charges. |
 
-## Screen-by-screen map
+## Screen map
 
-| File | Topic | Notes used | Type |
+| File | Theme | Findings shown | Type |
 |---|---|---|---|
-| `PARTICIPANT_A/A_01.png` | Editing time, footage choice, paid editor | A1, A2, A3, A4 | Illustrative reconstruction |
-| `PARTICIPANT_A/A_02.png` | 30-second rhythm, keeping key explanations, no auto B-roll, footage control | A5, A6, A7 | Illustrative reconstruction |
-| `PARTICIPANT_B/B_01.png` | Mixed media, asset hunting, frame-by-frame work, ChatGPT ideation, project-dependent footage | B2, B3, B4, B6, B9 | Illustrative reconstruction |
-| `PARTICIPANT_B/B_02.png` | Automate cutting and trimming, keep creative control, optional B-roll, predictable pricing | B5, B7, B8, B10 | Illustrative reconstruction |
-| `PARTICIPANT_C/C_01.png` | Gym YouTube channel, equipment and workload, footage limits | C1, C4, C5 | Illustrative reconstruction (short: limited notes) |
-| `PARTICIPANT_C/C_02.png` | Several angles, only a small portion used | C2, C3 | Illustrative reconstruction (short: limited notes) |
-| `PARTICIPANT_D/D_01.png` | Script-led production, repetitive editing, delegating B-roll | D1, D2, D3, D4 | Illustrative reconstruction |
-| `PARTICIPANT_D/D_02.png` | Restoring sections by timestamp, clip and token costs, MCP explanation, conditional willingness to pay | D5, D6, D7, I-doc | Illustrative reconstruction |
-| `PARTICIPANT_E/E_01.png` | Getting into short-form, CapCut | E1, E2, E5 | Illustrative reconstruction (short: limited notes) |
-| `PARTICIPANT_E/E_02.png` | Trying styles in CapCut, wanting a polished result | E2, E3, E4 | Illustrative reconstruction (short: limited notes) |
+| `PARTICIPANT_A/A_01.png` | Editing time and effort | A1, A2, A3, A4 (footage selection effort) | Illustrative reconstruction |
+| `PARTICIPANT_A/A_02.png` | Retention and keeping what matters | A4 (working with available footage), A5, A6, A7 | Illustrative reconstruction |
+| `PARTICIPANT_B/B_01.png` | The repetitive work behind editing | B1, B2, B3 | Illustrative reconstruction |
+| `PARTICIPANT_B/B_02.png` | Automation, creative control and pricing | B4, B5, B6, B7, B8 | Illustrative reconstruction |
 
-**Original-evidence screens: 0 of 10. Illustrative reconstructions: 10 of 10.**
+**Overlap:** A4 appears on both A screens, from two angles. A_01 covers the effort of selecting usable footage. A_02 covers available footage as A's reason for not wanting the tool to invent visuals. No other finding repeats.
 
-**Not assigned to anyone:**
-- C: specific equipment, software, editing time, or any opinion on AI or EditFlo.
-- E: any editing difficulty, frustration, spending habit, or AI opinion.
-- No participant is shown agreeing to buy.
+## Documented content vs reconstructed wording
 
-## Editable source
+| Element | Status |
+|---|---|
+| Research substance of every participant message: times, the ₹2,000 figure, tools, preferences, concerns | **Documented.** Each message maps to a finding code above. The per-message mapping is in `src/conversations.js`, in each message's `src` field. |
+| Exact wording of participant messages | **Reconstructed.** The tone is casual and was approved by the author. It is not verbatim and is not shown in quotation marks. |
+| Interviewer questions | **Reconstructed** (`I-recon`). They are neutral prompts and make no product promises. |
+| Filler messages ("yo rohan", "yooo", "go for it", "ok follow up from last time", "damn that's a lot of hunting") | **Reconstructed** (`filler`). They carry no research content. |
+| Dates, timestamps, read receipts, response delays | **None shown.** The status-bar clock reads 9:41, the standard device-mockup placeholder. |
+| Names, usernames, profile pictures | **Anonymised.** Rohan / `rohan.mkv_19` and `keyframe.goblin`. Profile pictures are placeholder cartoon graphics, not photos of participants. |
+
+**Not assigned to either participant:**
+- Any claim about B's reasons for wanting control beyond B4 and B5.
+- Any statement that A or B would buy or use EditFlo.
+
+## Captions
+
+These sit under each phone, outside the app interface:
+
+- *Participant A · Screen 1 of 2 · Illustrative reconstruction from interview notes — not an original chat record.* A_02, B_01 and B_02 use the equivalent wording.
+- *Participant A was interviewed through a text conversation. No original transcript was supplied, so this screen reconstructs the discussion from the interview notes. Shown in Instagram DM layout for presentation. Names and usernames are anonymised; the profile picture is a placeholder image.*
+
+## Design and editable source
 
 | Path | Contents |
 |---|---|
-| `src/conversations.js` | All message text, participant identities and per-line source tags. Edit this file to change content. |
-| `src/screen.html` | Instagram dark-mode DM template. Measurements in native iPhone px (1179 × 2556) were taken from the supplied reference screenshots: bubble colours and position-based gradient, 60 px line height, 30/40 px bubble padding, 8 px and 36 px message gaps, and header, composer and status-bar geometry. Font: Inter, standing in for SF Pro. Open `src/screen.html#B_02` in a browser to preview any screen. |
-| `src/render.js` | `node render.js`, run from `src/`, re-exports all ten PNGs and `preview_all_ten.png`. It needs Playwright and the Inter font installed. It also checks that every thread fits below the header and that Inter loaded. |
+| `src/conversations.js` | Approved dialogue, identities and per-message source tags. **The dialogue is locked:** change it only with the author's approval. |
+| `src/screen.html` | Instagram dark-mode DM template. Opening `screen.html#A_01` in a browser previews a screen. |
+| `src/render.js` | Running `node render.js` from `src/` re-exports the 4 PNGs and `preview_A_B.png`. It needs Playwright and the Inter font. It checks that every thread fits below the header and that Inter loaded. |
+| `src/avatars/A.png`, `src/avatars/B.png` | Placeholder profile pictures. |
 
-Each PNG is 1379 × 3026 px. The phone screen is at native 1179 × 2556, followed by a white caption area so the image can go straight into a PDF.
+**Design specs:**
+- **Measurements** come from the supplied Instagram screenshots: bubble colours and the position-based purple-to-blue gradient, 60 px line height, 30/40 px bubble padding, 8 px and 36 px message gaps, and the header, composer and status-bar geometry.
+- **Font:** Inter, standing in for SF Pro. Text widths were checked against the reference and are within about 1%.
+- **Screen size:** 1320 × 2868 px, a larger iPhone with the same aspect ratio as the 1179 × 2556 reference. At the reference size, A_02 and B_02 ran under the header. The larger screen fits them without shrinking the text or changing the approved wording. All text, bubble and icon sizes match the reference.
+- **Export:** each PNG is 1520 × 3380 px, with the phone on a white sheet and the caption below it, ready to insert into a PDF.

@@ -1,15 +1,15 @@
-// Renders all ten screens to PNG and builds a contact-sheet preview.
+// Renders the four screens (Participants A and B) to PNG and builds a contact-sheet preview.
 // Usage (from editflo-visuals/src):  node render.js
 const { chromium } = require("playwright");
 const path = require("path");
 const fs = require("fs");
 
 const OUT = path.resolve(__dirname, "..");
-const IDS = ["A_01", "A_02", "B_01", "B_02", "C_01", "C_02", "D_01", "D_02", "E_01", "E_02"];
+const IDS = ["A_01", "A_02", "B_01", "B_02"];
 
 (async () => {
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1379, height: 3000 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: { width: 1520, height: 3400 }, deviceScaleFactor: 1 });
   const problems = [];
   for (const id of IDS) {
     const url = "file://" + path.join(__dirname, "screen.html") + "#" + id;
@@ -30,18 +30,18 @@ const IDS = ["A_01", "A_02", "B_01", "B_02", "C_01", "C_02", "D_01", "D_02", "E_
     console.log("rendered", id);
   }
 
-  // Contact sheet: all ten side by side, for review only.
+  // Contact sheet: all four side by side, for review only.
   const imgs = IDS.map(id => "file://" + path.join(OUT, "PARTICIPANT_" + id[0], id + ".png"));
   const html = `<html><body style="margin:0;background:#fff;font-family:Inter">
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:28px;padding:36px;width:3400px">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px;padding:40px;width:2800px">
     ${imgs.map((src, i) => `<div><div style="font-size:30px;font-weight:600;margin:0 0 10px 6px;color:#333">${IDS[i]}</div><img src="${src}" style="width:100%"></div>`).join("")}
     </div></body></html>`;
-  const sheetPath = path.join(OUT, "preview_all_ten.html");
+  const sheetPath = path.join(OUT, "preview_A_B.html");
   fs.writeFileSync(sheetPath, html);
-  const p2 = await browser.newPage({ viewport: { width: 3400, height: 1000 } });
+  const p2 = await browser.newPage({ viewport: { width: 2800, height: 1000 } });
   await p2.goto("file://" + sheetPath);
   await p2.waitForLoadState("load");
-  await p2.screenshot({ path: path.join(OUT, "preview_all_ten.png"), fullPage: true });
+  await p2.screenshot({ path: path.join(OUT, "preview_A_B.png"), fullPage: true });
   fs.unlinkSync(sheetPath);
   await browser.close();
   console.log(problems.length ? "PROBLEMS:\n" + problems.join("\n") : "QA: no overflow, Inter loaded on all screens");
