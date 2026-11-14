@@ -1,1 +1,6 @@
 editflo-film/build/
+editflo-submission/build/node_modules/
+editflo-submission/build/qa/
+editflo-submission/build/package-lock.json
+editflo-submission/build/deck/*.jpg
+editflo-submission/build/deck/grid*.png

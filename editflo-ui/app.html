@@ -155,7 +155,7 @@ function dashboard(){
     </div></section>`;
   const mine=`<section><div class="sec-head"><h2>My workflows</h2><span class="muted">Illustrative examples</span></div>
     <div class="card" style="padding:4px 0">
-    ${[['Weekly vlog edit','YouTube Long-form','Pacing: Tight · Keep intro hook','Ready to use','ok'],['Interview episode cut','Podcast Repurposing','Preserve guest answers','Draft','draft']].map(([n,b,p,s,k],i)=>`
+    ${[['Weekly vlog edit','YouTube Long-form','Style: Educational · Keep intro hook','Ready to use','ok'],['Interview episode cut','Podcast Repurposing','Preserve guest answers','Draft','draft']].map(([n,b,p,s,k],i)=>`
       <div style="display:grid;grid-template-columns:28px 1.15fr 1.4fr 1.25fr .9fr 110px;align-items:center;gap:16px;padding:10px 20px;${i?'border-top:1px solid var(--border)':''}">
         <span style="color:var(--p)">${ic('mine',17)}</span><b style="font-weight:600">${n}</b>
         <span class="muted" style="font-size:13px">Based on ${b}</span><span class="muted" style="font-size:13px">${p}</span>
@@ -170,7 +170,7 @@ function detail(){
   const stages=[
     ['01','Footage organisation','Group raw clips by scene and take, and name them consistently so the edit starts in order.',['OpenFilm'],'Folder structure and clip names','creator','folder'],
     ['02','Content review and selection','Mark the sections worth keeping. Optional AI-assisted notes can flag repeated takes and long pauses.',['AI assistant · optional'],'Which sections stay and which go','creator','eye'],
-    ['03','Editing preparation','Set the sequence order and your editing preferences: pacing, moments to preserve, and style.',['EditFlo'],'Order and preferences before anything runs','creator','sliders'],
+    ['03','Editing preparation','Set the sequence order and your preferences: visual style, moments to preserve and optional B-roll.',['EditFlo'],'Order and preferences before anything runs','creator','sliders'],
     ['04','AI-assisted execution','Your AI assistant follows the instructions via MCP: trims pauses, assembles a rough cut, applies your preferences.',['MCP','AI assistant','OpenFilm'],'A proposed rough cut, not a final edit','ai','spark'],
     ['05','Creator review and refinement','Compare the proposed cut with your selections. Accept, adjust or undo each change before moving on.',['OpenFilm'],'Every change made in stage 04','check','check'],
     ['06','Final export preparation','Confirm the format and export settings for YouTube, then hand off a publish-ready file.',['OpenFilm'],'Format and final approval','creator','export'],
@@ -201,15 +201,15 @@ function detail(){
     <div class="card" style="padding:16px 20px">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><span style="color:var(--p)">${ic('lock',18)}</span><h2>Creator control</h2></div>
       <p class="muted" style="font-size:12.5px;margin:0 0 14px">EditFlo prepares and assists. You decide what stays.</p>
-      ${[['Review selected sections','Check what was kept before trimming starts.',''],['Preserve important content','Marked moments are never cut.',''],['Review before finalising','Required for every export.','lock']].map(([t,d,s],i)=>`
+      ${[['Review selected sections','Check kept sections before trimming.',''],['Preserve important content','Marked moments are never cut.',''],['Review before finalising','Required for every export.','lock']].map(([t,d,s],i)=>`
         <div style="display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--border)"><div style="flex:1"><div style="font-weight:600;font-size:13.5px">${t}</div><div class="muted" style="font-size:12.5px">${d}</div></div><div class="switch ${s}"></div></div>`).join('')}
       <div style="padding-top:12px;border-top:1px solid var(--border)">
         <div style="font-weight:600;font-size:13.5px;margin-bottom:8px">Editing preferences</div>
-        <div class="muted" style="font-size:12px;margin-bottom:6px">Pacing</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);background:var(--sunk);border-radius:8px;padding:3px;font-size:12.5px;text-align:center;font-weight:550">
-          <span style="padding:6px;color:var(--mut)">Relaxed</span><span style="padding:6px;background:#fff;border-radius:6px;box-shadow:var(--sh);color:var(--p)">Balanced</span><span style="padding:6px;color:var(--mut)">Tight</span></div>
+        <div class="muted" style="font-size:12px;margin-bottom:6px">Visual style for this project</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;height:34px;padding:0 12px;border:1px solid var(--border-2);border-radius:8px;background:#fff;font-size:13px"><span><b style="font-weight:600">Educational</b> <span class="muted">· clean cuts, light overlays</span></span><span style="color:var(--mut);transform:rotate(90deg);display:inline-flex">${ic('arrow',14,1.8)}</span></div>
+        <div style="display:flex;gap:12px;align-items:center;margin-top:10px"><div style="flex:1"><div style="font-weight:600;font-size:13px">B-roll suggestions</div><div class="muted" style="font-size:12px">Optional. Off by default.</div></div><div class="switch off"></div></div>
         <div class="muted" style="font-size:12px;margin:12px 0 6px">Always keep</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px">${['Intro hook','Key explanations','Call to action'].map(t=>`<span class="tag p">${ic('pin',13)} ${t}</span>`).join('')}<span class="tag line" style="color:var(--mut)">${ic('plus',13)} Add</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">${['Intro hook','Key points'].map(t=>`<span class="tag p">${ic('pin',13)} ${t}</span>`).join('')}<span class="tag line" style="color:var(--mut)">${ic('plus',13)} Add</span></div>
       </div></div>
     <div class="card" style="padding:14px 20px">
       <h2 style="font-size:14.5px;margin-bottom:4px">What you'll need</h2>
