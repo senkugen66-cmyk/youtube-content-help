@@ -142,7 +142,7 @@ $('prio').innerHTML = `<div class="prio">
 </div><figcaption><b>Figure 3.5 · Feature-priority matrix.</b> Priority reflects how directly each feature was raised in the follow-ups and how central it is to repetitive editing execution. It is a qualitative judgement, not a scored ranking.</figcaption>`;
 
 // ---------- Deck slides ----------
-const N = 13, img = (i) => `<img class="slide" src="deck/slide-${String(i).padStart(2, '0')}.png" alt="Slide ${i}">`;
+const N = 13, img = (i) => `<img class="slide" src="deck/slide-${String(i).padStart(2, '0')}.jpg" alt="Slide ${i}">`;
 $('slidesA').innerHTML = img(1);
 let rest = '';
 for (let i = 2; i <= N; i += 2) rest += `<section class="page-break"><div class="slides2">${img(i)}${i + 1 <= N ? img(i + 1) : ''}</div></section>`;
