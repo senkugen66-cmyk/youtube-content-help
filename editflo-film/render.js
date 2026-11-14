@@ -10,7 +10,7 @@ const [fps,W,out]=[+process.argv[2]||30,+process.argv[3]||4,process.argv[4]||'bu
    const a=w*per,z=Math.min(N,a+per);
    const p=await b.newPage({viewport:{width:1920,height:1080}});await p.goto('file://'+path.resolve('film.html'));await p.evaluate(()=>document.fonts.ready);
    const ff=spawn('ffmpeg',['-v','error','-y','-f','image2pipe','-framerate',String(fps),'-c:v','mjpeg','-i','-','-c:v','libx264','-preset','medium','-crf','16','-pix_fmt','yuv420p',`${out}/part${w}.mp4`]);
-   for(let i=a;i<z;i++){await p.evaluate(t=>render(t),i/fps);const buf=await p.screenshot({type:'jpeg',quality:95});
+   for(let i=a;i<z;i++){await p.evaluate(async t=>{render(t);await Promise.all([...document.images].map(im=>im.decode().catch(()=>{})))},i/fps);const buf=await p.screenshot({type:'jpeg',quality:95});
      if(!ff.stdin.write(buf))await new Promise(r=>ff.stdin.once('drain',r));
      if(w==0&&i%150==0)console.log(`w0 ${i-a}/${z-a} ${((Date.now()-t0)/1000).toFixed(0)}s`);}
    ff.stdin.end();await new Promise(r=>ff.on('close',r));await p.close();}));

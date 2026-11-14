@@ -428,12 +428,31 @@ function chrome(t){let h='';const show=t>T(14.6);
   let chap=null,ct=0;for(const s of S){if(s.chap&&t>=s.a){chap=s.chap;ct=s.a}}
   if(chap&&t<CUES.dur-.3)h+=A(1780,62,`<div class="mono" style="transform:translateX(-100%);white-space:nowrap;font-size:16px;color:${C.mut}">${typed(chap,t,ct+.2,40,false)}</div>`);
   return h}
+// ---------- founder presence (Revision 02) ----------
+// Source-time ranges where the presenter appears beside the graphics. The existing scenes
+// are untouched: during these ranges the whole scene layer eases into the right-hand
+// column (scaled about the right edge) and the presenter window takes the left column.
+const PRES=[[0.0,3.15],[12.46,16.85],[24.62,29.3],[57.44,60.8],[79.5,82.95],[89.26,92.55],[139.12,145.6],[147.56,163.6],[213.9,218.45],[222.52,227.9],[240.04,null]];
+const PRESO=PRES.map(([a,b])=>[a===0?-1:T(a)-0.2,b===null?CUES.dur-0.15:T(b)]);
+const NFACE=5305;
+function split(t){let v=0;for(const [a,b] of PRESO){v=Math.max(v,P(t,a,.8,E.io)*(1-P(t,b-.15,.7,E.io)))}return v}
+window.presenterTime=function(t){let v=0;for(const [a,b] of PRESO){v=Math.max(v,P(t,a+.15,.7,E.out)*(1-P(t,b-.2,.5,E.io)))}return v};
+function presenter(t){const p=presenterTime(t);if(p<=0.002)return '';
+  const fr=Math.min(NFACE,Math.max(1,Math.round(t*30)+1));const src='build/face/'+String(fr).padStart(5,'0')+'.jpg';
+  const d=310,cx=228,cy=505,R=d/2+16;
+  return A(cx-d/2,cy-d/2,`<div style="width:${d}px;height:${d}px;opacity:${cl(p*1.6-.1)};transform:scale(${lerp(.88,1,p)})">
+     <div style="width:${d}px;height:${d}px;border-radius:50%;overflow:hidden;background:#D9D3DE;box-shadow:0 0 0 6px #fff,0 26px 50px -22px rgba(60,30,90,.38)"><img src="${src}" style="display:block;width:108%;height:108%;margin:-4%"></div></div>`)+
+    svg(`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${C.l}" stroke-width="2.5" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="${1-p}" transform="rotate(-90 ${cx} ${cy})"/>`)+
+    A(cx,cy+R+26,`<div style="transform:translateX(-50%);display:flex;align-items:center;gap:10px;white-space:nowrap;opacity:${P(t,0,1)*cl(p*2-1)}"><span style="width:9px;height:9px;border-radius:50%;background:${C.p};display:inline-block"></span><span class="mono" style="font-size:15px;color:${C.ink}">Founder, EditFlo</span></div>`)+
+    A(452,cy-260,`<div style="width:2px;height:${520*p}px;background:${C.line};transform:translateY(${260*(1-p)}px)"></div>`)}
 window.render=function(t){let h=`<div class="a" style="inset:0;background:radial-gradient(1200px 800px at 70% 40%, #F3EBF9 0%, rgba(248,245,240,0) 70%)"></div>`;
+  const sp=split(t),k=1-.22*sp;
+  h+=`<div class="a" style="inset:0;transform-origin:0 0;transform:translate(${1920*(1-k)}px,${540*(1-k)}px) scale(${k})">`;
   S.forEach((s,i)=>{const nb=s.b;if(t<s.a-0.001||t>nb+0.55)return;let inner=s.f(t);
     const x=P(t,nb,.5,E.io);
     let tr='';if(s.exit==='up')tr=`opacity:${1-x};transform:translateY(${-50*x}px)`;else if(s.exit==='scale')tr=`opacity:${1-x};transform:scale(${1-.06*x});transform-origin:50% 50%`;else tr=`opacity:${1-P(t,nb,.25)}`;
     h+=`<div class="a" style="inset:0;${tr}">${inner}</div>`});
-  h+=chrome(t)+captions(t);
+  h+=`</div>`+presenter(t)+chrome(t)+captions(t);
   document.getElementById('stage').innerHTML=h};
 window.SFX=SFX;window.CHAPTERS=S.filter(s=>s.chap).map(s=>[s.chap,s.a]);
 render(0);
