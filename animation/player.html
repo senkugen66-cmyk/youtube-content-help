@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Episode Player</title>
+<style>
+  html,body{margin:0;background:#000;color:#ccc;font:13px system-ui}
+  canvas{display:block;width:100vw;max-width:1920px;aspect-ratio:16/9;margin:0 auto;background:#000}
+  #ui{display:flex;gap:8px;align-items:center;padding:8px;max-width:1920px;margin:0 auto}
+  #ui input{flex:1}
+  body.capture #ui{display:none}
+  body.capture canvas{width:1920px;height:1080px;max-width:none}
+</style>
+</head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<div id="ui"><button id="play">Play</button><input id="scrub" type="range" min="0" max="15" step="0.001" value="0"><span id="time">0.00s</span></div>
+<script type="module">
+  // Usage: player.html?ep=ep00-lit-town[&capture=1][&t=12.5]
+  const q = new URLSearchParams(location.search);
+  const ep = q.get('ep') || 'ep00-lit-town';
+  const mod = await import(`./episodes/${ep}/scene.js`);
+  const c = document.getElementById('c');
+  const ctx = c.getContext('2d');
+  if (q.get('capture')) document.body.classList.add('capture');
+  const scrub = document.getElementById('scrub');
+  scrub.max = mod.META.duration;
+  const draw = (t) => { mod.render(ctx, t); document.getElementById('time').textContent = t.toFixed(2) + 's'; };
+  window.META = mod.META;
+  window.renderAt = (t) => { draw(t); return true; };
+  window.ready = true;
+  let playing = false, t0 = 0, start = 0;
+  document.getElementById('play').onclick = () => {
+    playing = !playing; start = performance.now(); t0 = +scrub.value;
+    const loop = () => { if (!playing) return; let t = t0 + (performance.now() - start) / 1000;
+      if (t > mod.META.duration) { t = 0; t0 = 0; start = performance.now(); }
+      scrub.value = t; draw(t); requestAnimationFrame(loop); };
+    loop();
+  };
+  scrub.oninput = () => draw(+scrub.value);
+  draw(+(q.get('t') || 0));
+</script>
+</body>
+</html>
