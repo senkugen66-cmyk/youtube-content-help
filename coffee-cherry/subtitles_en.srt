@@ -1,0 +1,4 @@
+1
+00:00:00,950 --> 00:00:05,950
+Before it’s a cup, coffee is a cherry,
+ripening slowly on the branch.

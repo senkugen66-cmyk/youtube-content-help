@@ -1,0 +1,20 @@
+Ripening — a 10-second watercolor film made entirely in code.
+
+Style and tools: Lemo-Opuscar "Watercolor Brush" style, https://github.com/lemomo-ai/lemo-opuscar
+  engine.js (stroke engine) and paper.py are copied from it: Copyright (c) 2026 Lemomo, MIT License
+  (https://github.com/lemomo-ai/lemo-opuscar/blob/main/LICENSES/MIT.txt).
+
+Voice: Kokoro TTS (kokoro-onnx, Kokoro-82M model, Apache-2.0), voice "af_bella". Synthetic voice.
+Speech check: faster-whisper (MIT), Whisper base.en / small.en models (MIT).
+
+Music: original score written for this film.
+Piano: "Salamander Grand Piano V3" by Alexander Holm, licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+Kalimba: physically modelled synthesis (Lemo-Opuscar core/audio/pluck.py), no samples.
+Sound effects (brush, pen, mist, birds, air): synthesised procedurally in mix.py, no samples.
+
+Fonts (SIL Open Font License 1.1, via Google Fonts, self-hosted in fonts/):
+  Cormorant Garamond — Christian Thalmann
+  Caveat — Impallari Type
+  IBM Plex Mono — IBM Corp.
+
+Paper texture: generated procedurally (paper.py).
