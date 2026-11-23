@@ -1,0 +1,12 @@
+{
+  "name": "youtube-content-help",
+  "owner": { "name": "senkugen66-cmyk" },
+  "plugins": [
+    {
+      "name": "github-top-repos",
+      "source": "./plugins/github-top-repos",
+      "description": "Find the 10 most-starred GitHub repositories for any topic, ranked by stars.",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "github-top-repos",
+  "version": "0.1.0",
+  "author": { "name": "senkugen66-cmyk" },
+  "description": "Find the 10 most-starred GitHub repositories for any topic, ranked by stars.",
+  "keywords": ["github", "research", "repositories", "stars"]
+}

@@ -18,10 +18,10 @@ Find the most-starred repositories on GitHub for a topic and present a ranked to
 
    If no topic is given, ask for one.
 
-2. **Run the helper script** (it sits next to this file):
+2. **Run the helper script** in this skill's `scripts/` folder. Use the base directory shown when the skill loads:
 
    ```bash
-   bash .claude/skills/github-top-repos/scripts/top_repos.sh "<topic>" 10 "<optional qualifiers>"
+   bash "<skill base directory>/scripts/top_repos.sh" "<topic>" 10 "<optional qualifiers>"
    ```
 
    It searches both the GitHub topic tag (`topic:<slug>`) and repos whose name, description or topics mention the words. It merges the two, drops forks and archived repos, and ranks by stars. Each output line is one repo as JSON: `rank, name, url, stars, forks, language, description, topics, last_push, license`.
