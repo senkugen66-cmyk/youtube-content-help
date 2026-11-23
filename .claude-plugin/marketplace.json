@@ -1,6 +1,7 @@
 {
   "name": "youtube-content-help",
   "owner": { "name": "senkugen66-cmyk" },
+  "description": "Claude Code plugins for YouTube content research.",
   "plugins": [
     {
       "name": "github-top-repos",
