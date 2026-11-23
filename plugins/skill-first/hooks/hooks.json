@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Skill-first reminder: if this message is a real task, not just chat or a quick question, first follow the skill-first skill. Go through all available skills, pick the ones that fit, show which you are using, then plan or execute with them.\""
+          }
+        ]
+      }
+    ]
+  }
+}
