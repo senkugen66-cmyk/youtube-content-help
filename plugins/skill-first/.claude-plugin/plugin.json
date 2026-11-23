@@ -1,0 +1,7 @@
+{
+  "name": "skill-first",
+  "version": "0.1.0",
+  "description": "Before planning or doing any task, review all available skills, pick the ones that fit, then plan or execute with them.",
+  "author": { "name": "senkugen66-cmyk" },
+  "keywords": ["skills", "planning", "workflow"]
+}
